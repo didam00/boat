@@ -1,0 +1,89 @@
+@import "@/styles/variables";
+
+.r__header {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+
+  height: 60px;
+  width: 100%;
+
+  background-color: white;
+  border-bottom: 1px solid $LINE_GRAY_COLOR;
+
+  .h__container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: $CONTAINER_WIDTH;
+
+    margin: 0 auto;
+  }
+
+  .h__logo_image {
+    height: 100%;
+  }
+}
+
+.r__navbar {
+  display: flex;
+  width: 100%;
+
+  ul.navbar-menu {
+    display: flex;
+    gap: 8px;
+
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+
+    .category-link {
+      color: black;
+    }
+    
+    // 여기가 li 부분
+    .category_item {
+      list-style: none;
+      
+      color: $CATEGORY_COLOR;
+      font-weight: 600;
+
+      .item-hover_shadow {
+        padding: 12px 14px;
+        border-radius: 4px;
+        transition: all 200ms;
+      }
+      
+      &:hover .item-hover_shadow {
+        border-radius: calc((12px + 1rem) / 2);
+        background-color: $WHITE_GRAY_COLOR;
+      }
+    }
+  }
+
+  .new_form-container {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+
+    height: 100%;
+
+    .new_form-button {
+      padding: 11px 20px;
+
+      background-color: $MAIN_COLOR;
+      border-radius: calc(9px + 1rem);
+      
+      color: white;
+      font-weight: 700;
+
+      transition: all 200ms;
+
+      &:hover {
+        // background-color:$BRIGHT_MAIN_COLOR;
+        background-color:$SUB_COLOR;
+      }
+    }
+  }
+}

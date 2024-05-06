@@ -1,0 +1,48 @@
+@import "@/styles/variables";
+
+.container {
+  height: 195px;
+  padding: 27px 31px;
+
+  flex-basis: 0px;
+  flex-grow: 1;
+
+  border: 2px solid $LINE_GRAY_COLOR;
+  border-radius: $BORDER_RADIUS;
+}
+
+.title {
+  margin: 0;
+  color: $DARK_GRAY;
+}
+
+.forms-list {
+  margin-top: 1rem;
+
+  .row {
+    display: flex;
+    font-weight: 500;
+    line-height: 2rem;
+  
+    span {
+      width: 0;
+    }
+  
+    .row-title {
+      flex-grow: 2;
+    }
+  
+    .row-category {
+      color: $GRAY;
+
+      flex-grow: 1;
+    }
+  
+    .row-respondents {
+      color: $SUB_COLOR;
+      text-align: right;
+
+      flex-grow: 1;
+    }
+  }
+}

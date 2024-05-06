@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+
+.container {
+  font-weight: 700;
+  color: $DARK_GRAY;
+  
+  background-color: $WHITE_MAIN_COLOR;
+  padding: 19px 60px;
+  border-radius: $BORDER_RADIUS;
+}
