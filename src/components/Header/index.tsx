@@ -8,10 +8,11 @@ export default function Header() {
         <Link href="/">
           <img className={styles["h__logo_image"]} src="images/boat_title_logo.png" alt="logo image" />
         </Link>
-        <nav className={styles["r__navbar"]}>
+        <nav className={styles.r__navbar}>
           <ul className={styles["navbar-menu"]}>
-            <CategoryItem href="/forms">설문 목록</CategoryItem>
-            <CategoryItem href="/mypage">마이페이지</CategoryItem>
+            <CategoryItem href="/short-forms-list">쇼트 폼</CategoryItem>
+            <CategoryItem href="/long-forms-list">롱 폼</CategoryItem>
+            <CategoryItem href="/my-page">마이페이지</CategoryItem>
           </ul>
           <div style={{flex: "1 0 0"}}></div>
           <Link href="/">
