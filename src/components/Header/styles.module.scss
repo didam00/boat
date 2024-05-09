@@ -2,6 +2,7 @@
 
 .r__header {
   position: sticky;
+  z-index: 9999;
   top: 0px;
   left: 0px;
 
@@ -52,7 +53,7 @@
       .item-hover_shadow {
         padding: 12px 14px;
         border-radius: 4px;
-        transition: all 200ms;
+        
       }
       
       &:hover .item-hover_shadow {
@@ -69,6 +70,8 @@
 
     height: 100%;
 
+    overflow: hidden;
+
     .new_form-button {
       padding: 11px 20px;
 
@@ -78,11 +81,9 @@
       color: white;
       font-weight: 700;
 
-      transition: all 200ms;
-
       &:hover {
-        // background-color:$BRIGHT_MAIN_COLOR;
         background-color:$SUB_COLOR;
+        padding-left: 48px;
       }
     }
   }

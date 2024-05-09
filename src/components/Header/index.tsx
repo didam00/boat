@@ -10,8 +10,9 @@ export default function Header() {
         </Link>
         <nav className={styles["r__navbar"]}>
           <ul className={styles["navbar-menu"]}>
-            <CategoryItem href="/forms">설문 목록</CategoryItem>
-            <CategoryItem href="/mypage">마이페이지</CategoryItem>
+            <CategoryItem href="/short-forms-list">쇼트 폼</CategoryItem>
+            <CategoryItem href="/long-forms-list">모든 설문</CategoryItem>
+            <CategoryItem href="/my-page">마이페이지</CategoryItem>
           </ul>
           <div style={{flex: "1 0 0"}}></div>
           <Link href="/">

@@ -1,0 +1,19 @@
+@import "@/styles/variables";
+
+.top-container {
+  position: relative;
+  display: flex;
+  gap: 50px;
+}
+
+.form-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 680px;
+}

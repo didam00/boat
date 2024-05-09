@@ -2,18 +2,20 @@
 
 .container {
   height: 195px;
-  padding: 27px 31px;
 
   flex-basis: 0px;
   flex-grow: 1;
 
   border: 2px solid $LINE_GRAY_COLOR;
-  border-radius: $BORDER_RADIUS;
+
+  &:hover {
+    scale: 1.01;
+  }
 }
 
 .title {
   margin: 0;
-  color: $DARK_GRAY;
+  color: $DARK_GRAY_COLOR;
 }
 
 .forms-list {
@@ -33,7 +35,7 @@
     }
   
     .row-category {
-      color: $GRAY;
+      color: $GRAY_COLOR;
 
       flex-grow: 1;
     }

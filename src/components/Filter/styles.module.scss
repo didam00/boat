@@ -1,0 +1,94 @@
+@import "@/styles/variables";
+
+.filter-container {
+  transition: none;
+  position: fixed;
+  right: calc((100vw - $CONTAINER_WIDTH) / 2);
+
+  .search-area {
+    font-family: "Pretendard";
+    font-size: 1.25rem;
+    width: 321px;
+    font-weight: 600;
+    transition: all 200ms;
+    // border-color: $BRIGHT_GRAY_COLOR;
+    border-color: $WHITE_MAIN_COLOR;
+    color: $MAIN_COLOR;
+    
+    &:hover {
+      border-color: $BRIGHT_MAIN_COLOR;
+    }
+    
+    &:focus {
+      transition: all 200ms;
+      border-color: $BRIGHT_MAIN_COLOR;
+      outline: none;
+
+      &::placeholder {
+        color: $MAIN_COLOR;
+      }
+    }
+    
+    &::placeholder {
+      color: $BRIGHT_MAIN_COLOR;
+      transition: all 200ms;
+    }
+
+    &:valid {
+      border-color: $BRIGHT_MAIN_COLOR;
+    }
+  }
+
+  .category-filter-container {
+    margin-top: 1rem;
+
+    .checkbox-container {
+      font-size: 1rem;
+      margin-top: 1rem;
+      user-select: none;
+
+      input {
+        display: none;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 500;
+
+        &::before {
+          content: '';
+          display: block;
+          width: 25px;
+          height: 25px;
+          margin-right: 1rem;
+          background-repeat: no-repeat;
+          background-position: -2px -2px;
+
+          // border를 만든다
+          border-radius: 12.5px;
+          box-sizing: border-box;
+          border: 2px solid $LINE_GRAY_COLOR;
+        }
+      }
+
+      input + label::before {
+        background-image: url("/svgs/checkbox-off.svg");
+      }
+      
+      input:checked + label::before {
+        background-image: url("/svgs/checkbox-on.svg");
+      }
+
+      input + label:hover::before {
+        border-color: $BRIGHT_GRAY_COLOR;
+      }
+    }
+    
+    // 아무 input도 체크되어 있지 않을 때
+    &:not(:has(input:checked)) label::before {
+      background-image: url("/svgs/checkbox-all.svg");
+    }
+  }
+}

@@ -5,14 +5,32 @@
   src: url("/fonts/PretendardVariable.woff2") format("opentype");
 }
 
+* {
+  transition: all 200ms;
+}
+
 :root {
   font-family: "Pretendard";
   font-size: 16px;
-  color: $DARK_GRAY;
+  color: $DARK_GRAY_COLOR;
+
+  overflow-y: scroll;
 }
 
 h2 {
+  margin: 0;
   font-weight: 800;
+  font-size: 1.75rem;
+  
+  &.page_title {
+    height: 35px;
+    margin-bottom: 25px;
+  }
+}
+
+h3 {
+  margin: 0;
+  font-weight: 700;
   font-size: 1.25rem;
 }
 
@@ -35,7 +53,11 @@ main {
   }
 
   > *:first-child {
-    margin-top: 48px;
+    margin-top: 3rem;
+  }
+
+  > *:last-child {
+    margin-bottom: 3rem;
   }
 }
 
@@ -43,4 +65,22 @@ main {
   display: flex;
   width: 100%;
   gap: 24px;
+}
+
+.box-container {
+  border: 2px solid $LINE_GRAY_COLOR;
+  border-radius: $BORDER_RADIUS;
+  padding: 27px 31px;
+  overflow: hidden;
+
+  &:hover {
+    scale: 1.02;
+    box-shadow: 0px 4px 10px #00000008;
+  }
+}
+
+.container-title {
+  margin: 15px 0;
+  height: 30px;
+  text-align: center;
 }

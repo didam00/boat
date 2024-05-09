@@ -13,18 +13,19 @@ export default function Card({
     respondents: number
   }[]
 }) {
-  const rows = contents.map(c => (
+  const rows = contents.map((c, i) => (
     <Row
       title={c.title}
       category={c.category}
       respondents={c.respondents}
+      key={i}
     />));
 
   return (
-    <article className={styles.container}>
-      <h2 className={styles.title}>
+    <article className={`${[styles.container]} box-container`}>
+      <h3 className={styles.title}>
         {title} <span className="subcolor-text">{highlight}</span>
-      </h2>
+      </h3>
       <div className={styles["forms-list"]}>
         {rows}
       </div>

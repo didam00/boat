@@ -1,0 +1,63 @@
+@import "@/styles/variables";
+
+.short-form {
+  overflow: hidden;
+  height: 1.5rem;
+  border: 2px solid $LINE_GRAY_COLOR;
+
+  cursor: pointer;
+
+  .title-container {
+    display: flex;
+  }
+
+  .show-more-icon {
+    user-select: none;
+    color: $GRAY_COLOR;
+  }
+  
+  &:hover {
+    border-color: $BRIGHT_MAIN_COLOR;
+
+    // box-shadow: 0px 8px 12px $TRANSPERENT_MAIN_COLOR;
+    // scale: 1.005;
+    // translate: 0 -4px;
+
+    .title {
+      color: $MAIN_COLOR;
+    }
+    
+    .show-more-icon {
+      color: $BRIGHT_MAIN_COLOR;
+    }
+  }
+}
+
+.form-desc {
+  margin-top: 1.5rem;
+
+  font-weight: 500;
+  // color: transparent;
+
+  cursor: text;
+}
+
+.short-form.open {
+  height: 200px;
+  border-color: $BRIGHT_MAIN_COLOR;
+
+  .title {
+    color: $MAIN_COLOR;
+  }
+
+  .show-more-icon {
+    rotate: -180deg;
+    color: $BRIGHT_MAIN_COLOR;
+  }
+
+  .form-desc {
+    margin-top: 0.8rem;
+
+    // color: $DARK_GRAY_COLOR;
+  }
+}
