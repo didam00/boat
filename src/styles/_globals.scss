@@ -7,6 +7,11 @@
 
 * {
   transition: all 200ms;
+
+  &::selection {
+    background-color: #000000c0;
+    color: #fff;
+  }
 }
 
 :root {
@@ -83,4 +88,48 @@ main {
   margin: 15px 0;
   height: 30px;
   text-align: center;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin-right: 1rem;
+    background-repeat: no-repeat;
+    background-position: -2px -2px;
+
+    // border를 만든다
+    border-radius: 12.5px;
+    box-sizing: border-box;
+    border: 2px solid $LINE_GRAY_COLOR;
+  }
+}
+
+input[type=checkbox] + label::before {
+  background-image: url("/svgs/checkbox-off.svg");
+}
+
+input[type=checkbox]:checked + label::before {
+  background-image: url("/svgs/checkbox-on.svg");
+}
+
+input[type=checkbox] + label:hover::before {
+  border-color: $BRIGHT_GRAY_COLOR;
+}
+
+.checkbox-container {
+  font-size: 1rem;
+  margin-top: 1rem;
+  user-select: none;
 }

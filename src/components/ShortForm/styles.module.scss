@@ -35,6 +35,8 @@
 
 .form-desc {
   margin-top: 1.5rem;
+  scale: 0.98;
+  color: $BRIGHT_GRAY_COLOR;
 
   font-weight: 500;
   // color: transparent;
@@ -57,7 +59,7 @@
 
   .form-desc {
     margin-top: 0.8rem;
-
-    // color: $DARK_GRAY_COLOR;
+    scale: 1;
+    color: $DARK_GRAY_COLOR;
   }
 }

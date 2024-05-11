@@ -4,6 +4,18 @@
   transition: none;
   position: fixed;
   right: calc((100vw - $CONTAINER_WIDTH) / 2);
+  padding: 0 12px 0 12px;
+  overflow-y: scroll;
+  margin-top: -48px;
+  height: calc(100vh - 109px + 48px);
+  
+  .filter-list {
+    display: flex;
+    gap: 0.75rem;
+    flex-direction: column;
+    overflow: visible;
+    margin-bottom: 24px;
+  }
 
   .search-area {
     font-family: "Pretendard";
@@ -40,55 +52,14 @@
   }
 
   .category-filter-container {
-    margin-top: 1rem;
-
-    .checkbox-container {
-      font-size: 1rem;
-      margin-top: 1rem;
-      user-select: none;
-
-      input {
-        display: none;
-      }
-
-      label {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        font-weight: 500;
-
-        &::before {
-          content: '';
-          display: block;
-          width: 25px;
-          height: 25px;
-          margin-right: 1rem;
-          background-repeat: no-repeat;
-          background-position: -2px -2px;
-
-          // border를 만든다
-          border-radius: 12.5px;
-          box-sizing: border-box;
-          border: 2px solid $LINE_GRAY_COLOR;
-        }
-      }
-
-      input + label::before {
-        background-image: url("/svgs/checkbox-off.svg");
-      }
-      
-      input:checked + label::before {
-        background-image: url("/svgs/checkbox-on.svg");
-      }
-
-      input + label:hover::before {
-        border-color: $BRIGHT_GRAY_COLOR;
-      }
-    }
     
     // 아무 input도 체크되어 있지 않을 때
     &:not(:has(input:checked)) label::before {
       background-image: url("/svgs/checkbox-all.svg");
     }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
   }
 }

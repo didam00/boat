@@ -1,0 +1,56 @@
+@import "@/styles/variables";
+
+.top-container {
+  position: relative;
+  display: flex;
+  gap: 50px;
+}
+
+.form-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 680px;
+}
+
+.forms-table {
+  border-collapse: collapse;
+  font-weight: 500;
+
+  tr {
+    height: 3rem;
+
+    th, td {
+      padding: 0 1rem;
+      border-width: 0 0 2px 0;
+      border-style: solid;
+      border-color: $LINE_GRAY_COLOR;
+      border-collapse: collapse;
+    }
+
+    &.table-header th {
+      font-weight: 800;
+      border-color: #e8e8e8;
+    }
+
+    th:nth-child(3) {
+      font-weight: 700;
+      color: $SUB_COLOR;
+    }
+
+    td:nth-child(3n) {
+      font-weight: 600;
+      color: $SUB_COLOR;
+    }
+
+    td:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
