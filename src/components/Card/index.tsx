@@ -15,10 +15,10 @@ export default function Card({
 }) {
   const rows = contents.map((c, i) => (
     <Row
+      key={i}
       title={c.title}
       category={c.category}
       respondents={c.respondents}
-      key={i}
     />));
 
   return (
