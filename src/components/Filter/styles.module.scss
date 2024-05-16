@@ -8,6 +8,7 @@
   overflow-y: scroll;
   margin-top: -48px;
   height: calc(100vh - 109px + 48px);
+  width: $RIGHT_SIDE_WIDTH;
   
   .filter-list {
     display: flex;
@@ -18,9 +19,11 @@
   }
 
   .search-area {
+    box-sizing: border-box;
     font-family: "Pretendard";
     font-size: 1.25rem;
-    width: 321px;
+    // width: 321px;
+    width: 100%;
     font-weight: 600;
     transition: all 200ms;
     // border-color: $BRIGHT_GRAY_COLOR;
