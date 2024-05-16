@@ -19,9 +19,9 @@ export default function AllFormsList() {
   return (
     <main>
       <div className={`m__size ${styles["top-container"]}`} style={{display: "flex"}}>
-        <section className={` ${styles["form-list-container"]}`}>
+        <section className={`${styles["forms-list-section"]}`}>
           <h2 className="page_title">모든 설문 목록</h2>
-          <div className={styles["forms-list-container"]}>
+          <div className={styles["forms-table-container"]}>
             <table className={styles["forms-table"]}>
               <tbody>
                 <tr className={styles["table-header"]}>
