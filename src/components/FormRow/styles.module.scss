@@ -1,3 +1,5 @@
+@import "@/styles/variables";
+
 .row {
   vertical-align: middle;
 
@@ -14,5 +16,20 @@
   .participants-value {
     width: 25%;
     text-align: right;
+  }
+
+  &.short-form {
+    .title-value::after {
+      content: "short";
+      color: $MAIN_COLOR;
+      font-size: 0.75rem;
+      font-weight: 600;
+
+      margin-left: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.75rem + 0.25rem * 2;
+
+      background: $WHITE_MAIN_COLOR;
+    }
   }
 }

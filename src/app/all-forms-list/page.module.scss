@@ -31,6 +31,7 @@
       border-style: solid;
       border-color: $LINE_GRAY_COLOR;
       border-collapse: collapse;
+      cursor: pointer;
     }
 
     &.table-header th {
@@ -43,14 +44,17 @@
       color: $SUB_COLOR;
     }
 
+    td:nth-child(2n) {
+      color: $GRAY_COLOR;
+    }
+
     td:nth-child(3n) {
       font-weight: 600;
       color: $SUB_COLOR;
     }
 
-    td:hover {
+    td:hover span {
       text-decoration: underline;
-      cursor: pointer;
     }
   }
 }

@@ -6,7 +6,11 @@ export default function Header() {
     <header className={styles["r__header"]}>
       <div className={styles["h__container"]}>
         <Link href="/">
-          <img className={styles["h__logo_image"]} src="images/boat_title_logo.png" alt="logo image" />
+          <img
+            className={styles["h__logo_image"]}
+            src="images/boat_title_logo.png"
+            alt="logo image"
+          />
         </Link>
         <nav className={styles["r__navbar"]}>
           <ul className={styles["navbar-menu"]}>

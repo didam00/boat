@@ -9,6 +9,7 @@ for (let i = 1; i <= 50; i++) {
       title={`타이틀 제목 ${i}`}
       category="프로그래밍"
       participants={Math.floor(Math.random() * 200)}
+      isShort={Math.random() < 0.25}
     />
   );
 }

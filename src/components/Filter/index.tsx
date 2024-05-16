@@ -108,8 +108,8 @@ function ShortFormOptionArea() {
       <div className="checkbox-container" style={{
         margin: 0
       }}>
-        <input type="checkbox" name="select-include-shorts" id="select-include-shorts" checked />
-        <label htmlFor="select-include-shorts"><span>쇼트 폼도 결과에 포함</span></label>
+        <input type="checkbox" name="select-include-shorts" id="select-include-shorts" />
+        <label htmlFor="select-include-shorts"><span>쇼트 폼은 검색 결과에 미포함</span></label>
       </div>
     </div>
   )
