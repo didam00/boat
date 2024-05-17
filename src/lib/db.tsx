@@ -1,32 +1,19 @@
-import { createPool } from "mysql2";
+import {MongoClient} from 'mongodb'
 
-const pool = createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  port: 3306,
-})
+const URI = process.env.MONGO_URI;
 
-pool.getConnection((err, conn) => {
-  if (err) console.log('Error connecting to db...')
-  else console.log('Connected to db...!')
-  conn.release()
-})
-
-const executeQuery = (query: string, arrParams: any) => {
-  return new Promise((resolve, reject) => {
-    try {
-      pool.query(query, arrParams, (err, data) => {
-        if (err) {
-          console.log('Error in executing the query')
-          reject(err)
-        }
-        console.log('------db.jsx------')
-        resolve(data)
-      })
-    } catch (err) {
-      reject(err)
-    }
-  })
+if (!URI) {
+    throw new Error('The MONGODB_URL environment variable is not defined')
 }
 
-export default executeQuery
+let connectDB: Promise<MongoClient>;
+if (process.env.NODE_ENV === 'development') {
+    if (!global._mongo) {
+        global._mongo = new MongoClient(URI).connect()
+    }
+    connectDB = global._mongo
+} else {
+    connectDB = new MongoClient(URI).connect()
+}
+
+export {connectDB}
