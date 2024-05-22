@@ -1,9 +1,9 @@
-import {MongoClient} from 'mongodb'
+import { MongoClient } from 'mongodb'
 
 const URI = process.env.MONGO_URI;
 
 if (!URI) {
-    throw new Error('The MONGODB_URL environment variable is not defined')
+    throw new Error('The MONGO_URI environment variable is not defined')
 }
 
 let connectDB: Promise<MongoClient>;
