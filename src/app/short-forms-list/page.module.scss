@@ -6,7 +6,7 @@
   gap: 50px;
 }
 
-.form-list-container {
+.flex-container {
   display: flex;
   flex-direction: column;
 }
@@ -16,5 +16,5 @@
   flex-direction: column;
   gap: 0.75rem;
   // width: 680px;
-  width: $LEFT_SIDE_WIDTH;
+  width: calc(100%);
 }

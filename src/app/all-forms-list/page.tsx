@@ -19,21 +19,23 @@ export default function AllFormsList() {
   return (
     <main>
       <div className={`m__size ${styles["top-container"]}`} style={{display: "flex"}}>
-        <section className={`${styles["forms-list-section"]}`}>
-          <h2 className="page_title">모든 설문 목록</h2>
-          <div className={styles["forms-table-container"]}>
-            <table className={styles["forms-table"]}>
-              <tbody>
-                <tr className={styles["table-header"]}>
-                  <th>제목</th>
-                  <th>카테고리</th>
-                  <th>참여수</th>
-                </tr>
-                {shortForms}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <div className="left-container">
+          <section className={`${styles['flex-container']}`}>
+            <h2 className="page_title">모든 설문 목록</h2>
+            <div className={styles["forms-table-container"]}>
+              <table className={styles["forms-table"]}>
+                <tbody>
+                  <tr className={styles["table-header"]}>
+                    <th>제목</th>
+                    <th>카테고리</th>
+                    <th>참여수</th>
+                  </tr>
+                  {shortForms}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
         <Filter isShortFormTab={true}/>
       </div>
     </main>

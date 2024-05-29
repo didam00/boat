@@ -3,6 +3,8 @@ import styles from "./page.module.scss";
 import LineNotice from "../components/LineNotice";
 import Card from "@/components/Card";
 
+import { connectDB } from "@/lib/db";
+
 const interrestedForms: {
   title: string,
   category: string,
@@ -35,8 +37,14 @@ const interrestedForms: {
   },
 ]
 
-export default function Main() {
+export default async function Main() {
   let interestedSubject = "프로그래밍";
+  const db = (await connectDB).db("boat");
+  console.log("**************************");
+  console.log(db);
+  let result = await db.collection("users")
+  console.log(result);
+  console.log("**************************");
 
   return (
     <main>
