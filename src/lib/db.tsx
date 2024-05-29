@@ -1,19 +1,9 @@
-import {MongoClient} from 'mongodb'
+import mongoose from 'mongoose'
 
-const URI = process.env.MONGO_URI;
+const DB_URI = process.env.MONGO_URI;
 
-if (!URI) {
-    throw new Error('The MONGODB_URL environment variable is not defined')
-}
-
-let connectDB: Promise<MongoClient>;
-if (process.env.NODE_ENV === 'development') {
-    if (!global._mongo) {
-        global._mongo = new MongoClient(URI).connect()
-    }
-    connectDB = global._mongo
+if (DB_URI) {
+    mongoose.connect(DB_URI);
 } else {
-    connectDB = new MongoClient(URI).connect()
+    console.error("Can't find MONGO_URI.");
 }
-
-export {connectDB}
