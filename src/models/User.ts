@@ -6,7 +6,7 @@ export interface AddressType {
 }
 
 export interface UserSchema {
-  id: string,
+  username: string,
   password: string,
   email: string,
   name: string,
@@ -19,7 +19,7 @@ export interface UserSchema {
 }
 
 const userSchema = new Schema<UserSchema>({
-  id:           {type: String, required: true, unique: true},
+  username:     {type: String, required: true, unique: true},
   password:     {type: String, required: true},
   email:        {type: String, required: true},
   name:         {type: String, required: true},

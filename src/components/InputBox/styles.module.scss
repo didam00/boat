@@ -1,0 +1,22 @@
+@import "@/styles/variables";
+
+.input-box {
+  input {
+    width: 300px;
+    padding: 27px 31px;
+    margin: 0.5rem 0;
+
+    font-size: 1.25rem;
+    font-family: "Pretendard";
+    font-weight: 600;
+    color: $DARK_GRAY_COLOR;
+
+    border: 2px solid $WHITE_GRAY_COLOR;
+    border-radius: $BORDER_RADIUS;
+    transition: all 200ms;
+
+    &:hover {
+      border-color: $BRIGHT_MAIN_COLOR;
+    }
+  }
+}

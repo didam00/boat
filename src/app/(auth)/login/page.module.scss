@@ -1,0 +1,27 @@
+@import "@/styles/variables";
+
+.top-container {
+  display: flex;
+  justify-content: center;
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.typo_logo-container {
+  width: 120px;
+  margin: 6rem 0 1rem 0;
+
+  img {
+    width: 100%;
+  }
+}
