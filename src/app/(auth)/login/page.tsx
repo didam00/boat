@@ -32,7 +32,11 @@ function LoginForm() {
         required={true}
         pattern="[A-Za-z0-9_]+"
       />
-      <SubmitButton text="로그인" />
+      <button className={`submit-button`}>
+        <span className={styles["text"]}>
+          로그인
+        </span>
+      </button>
     </form>
   )
 }

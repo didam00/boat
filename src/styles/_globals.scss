@@ -146,3 +146,25 @@ input[type=checkbox] + label:hover::before {
   margin-top: 1rem;
   user-select: none;
 }
+
+.submit-button {
+  padding: 12px 24px;
+  margin: 1rem 0;
+
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Pretendard';
+  color: white;
+  
+  background-color: $MAIN_COLOR;
+
+  border: none;
+  border-radius: $BORDER_RADIUS / 2;
+
+  cursor: pointer;
+
+  &:hover {
+    padding: 12px 28px;
+    background-color: $SUB_COLOR;
+  }
+}
