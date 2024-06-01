@@ -1,17 +1,22 @@
+import { KeyboardEventHandler } from "react";
 import styles from "./styles.module.scss";
 
 export default function SmallInputBox({
   type,
   name,
   placeholder,
-  required,
+  required = false,
   pattern,
+  autocomplete = "off",
+  onkeydown
 }: {
   type: string,
   name: string,
   placeholder: string,
-  required: boolean,
-  pattern?: string
+  required?: boolean,
+  pattern?: string,
+  autocomplete?: "on" | "off"
+  onkeydown?: KeyboardEventHandler
 }) {
   return (
     <div className={styles["input-box"]}>
@@ -21,6 +26,8 @@ export default function SmallInputBox({
         placeholder={placeholder}
         required={required}
         pattern={pattern}
+        autoComplete={autocomplete}
+        onKeyDown={onkeydown}
       />
     </div>
   )

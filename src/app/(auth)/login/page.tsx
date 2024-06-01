@@ -1,6 +1,6 @@
-import SubmitButton from "@/components/SubmitButton";
 import styles from "./page.module.scss";
 import SmallInputBox from "@/components/SmallInputBox";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
@@ -9,6 +9,7 @@ export default function LoginPage() {
         <section className={styles["main-content"]}>
           <Logo />
           <LoginForm />
+          <ForgotPassword />
         </section>
       </div>
     </main>
@@ -24,6 +25,7 @@ function LoginForm() {
         placeholder="아이디를 입력해주세요"
         required={true}
         pattern="[A-Za-z0-9_]+"
+        autocomplete="on"
       />
       <SmallInputBox
         type="password"
@@ -45,6 +47,16 @@ function Logo() {
   return (
     <div className={styles["typo_logo-container"]}>
       <img src="images/boat_typo.png" alt="typo logo" />
+    </div>
+  )
+}
+
+function ForgotPassword() {
+  return (
+    <div className={styles["forgot-password-container"]}>
+      <Link href="/">
+        혹시 비밀번호를 잃어버리셨나요?
+      </Link>
     </div>
   )
 }

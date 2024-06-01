@@ -25,3 +25,19 @@
     width: 100%;
   }
 }
+
+.forgot-password-container {
+  font-size: 0.75rem;
+  color: $BRIGHT_MAIN_COLOR;
+  font-weight: 500;
+
+  a {  
+    &:active, &:link, &:visited {
+      color: $BRIGHT_MAIN_COLOR;
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

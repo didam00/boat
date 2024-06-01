@@ -2,7 +2,7 @@
 
 .input-box {
   input {
-    width: 300px;
+    width: auto;
     padding: 18px 24px;
     margin: 0.25rem 0;
 
@@ -11,21 +11,21 @@
     font-weight: 600;
     color: $DARK_GRAY_COLOR;
 
-    &::placeholder {
-      color: $BRIGHT_GRAY_COLOR;
-    }
-
     border: 2px solid $WHITE_GRAY_COLOR;
     border-radius: $BORDER_RADIUS / 2;
     transition: all 200ms;
     outline: none;
-
+    
     &:hover {
       border-color: $WHITE_MAIN_COLOR;
     }
-
+    
     &:focus {
       border-color: $BRIGHT_MAIN_COLOR;
+    }
+
+    &::placeholder {
+      color: $BRIGHT_GRAY_COLOR;
     }
   }
 }

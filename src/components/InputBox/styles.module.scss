@@ -13,10 +13,25 @@
 
     border: 2px solid $WHITE_GRAY_COLOR;
     border-radius: $BORDER_RADIUS;
+    outline: none;
+
     transition: all 200ms;
 
     &:hover {
+      border-color: $WHITE_MAIN_COLOR;
+    }
+    
+    &:focus {
       border-color: $BRIGHT_MAIN_COLOR;
+    }
+
+    &:valid {
+      color: $SUB_COLOR;
+      border-color: $BRIGHT_MAIN_COLOR;
+    }
+
+    &::placeholder {
+      color: $BRIGHT_GRAY_COLOR;
     }
   }
 }

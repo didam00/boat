@@ -4,14 +4,14 @@ export default function InputBox({
   type,
   name,
   placeholder,
-  required,
   pattern,
+  required = false,
 }: {
   type: string,
   name: string,
   placeholder: string,
-  required: boolean,
   pattern?: string
+  required?: boolean,
 }) {
   return (
     <div className={styles["input-box"]}>

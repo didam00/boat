@@ -1,0 +1,7 @@
+.essay-answer > div {
+  display: flex;
+
+  & > input {
+    flex-grow: 1;
+  }
+}
