@@ -1,20 +1,36 @@
 @import "@/styles/variables";
 
 .top-container {
-  h2 {
-    margin-bottom: 3rem;
+  .category-list {
+    margin-left: 0.5rem;
+
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $GRAY_COLOR;
+  }
+
+  .vote-main {
+    width: $LEFT_SIDE_WIDTH + 200px;
+  }
+  
+  .side {
+    position: fixed;
+    top: 180px;
+    right: calc((100vw - $CONTAINER_WIDTH) / 2);
+
+    width: $RIGHT_SIDE_WIDTH - 200px;
   }
 }
 
 .question-box {
-  margin-bottom: 1rem;
-  border-color: transparent;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   
+  margin-bottom: 1rem;
+  border-color: $WHITE_GRAY_COLOR;
+  
   &:hover {
-    border-color: $WHITE_GRAY_COLOR;
     scale: none;
     box-shadow: none;
   }
@@ -44,7 +60,7 @@
   }
 
   input:checked + label {
-    color: $SUB_COLOR;
+    color: $MAIN_COLOR;
   }
 
   label, label span {
@@ -63,5 +79,14 @@
     & > input {
       flex-grow: 1;
     }
+  }
+}
+
+.side {
+  .skeleton-index-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
   }
 }

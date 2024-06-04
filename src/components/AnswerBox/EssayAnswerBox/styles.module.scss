@@ -1,7 +1,34 @@
-.essay-answer > div {
-  display: flex;
+@import "@/styles/variables";
 
-  & > input {
-    flex-grow: 1;
+.essay-answer {
+  textarea {
+    width: auto;
+    padding: 18px 24px;
+    margin: 0.25rem 0;
+
+    font-size: 1rem;
+    font-family: "Pretendard";
+    font-weight: 600;
+    color: $DARK_GRAY_COLOR;
+
+    border: 2px solid $WHITE_GRAY_COLOR;
+    border-radius: $BORDER_RADIUS / 2;
+    outline: none;
+    
+    transition: all 200ms;
+    resize: none;
+    height: 120px;
+    
+    &:hover {
+      border-color: $WHITE_MAIN_COLOR;
+    }
+    
+    &:focus {
+      border-color: $BRIGHT_MAIN_COLOR;
+    }
+
+    &::placeholder {
+      color: $BRIGHT_GRAY_COLOR;
+    }
   }
 }

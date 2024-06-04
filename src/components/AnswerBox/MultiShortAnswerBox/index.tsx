@@ -23,6 +23,10 @@ export default function MultiShortAnswerBox({
     setAnswers(prevAnswers => [...prevAnswers, text]);
   }
 
+  function deleteAnswer(index: number) {
+    setAnswers([...answers.toSpliced(index, 1)]);
+  }
+
   return (
     <div 
       className={`answer-box ${styles["multi-short-answer"]}`}
@@ -36,12 +40,24 @@ export default function MultiShortAnswerBox({
       />
       <div className={styles["answers-box"]}>
         {answers.map((answer, i) => (
-          <div key={i} className={styles["answer"]}>
-            <span className={styles["text"]}>{answer}</span>
-            <img className={styles["close-icon"]} src="/svgs/close-icon.svg" alt="close icon" />
-          </div>
+          <Answer key={i} answer={answer} onClick={ () => {deleteAnswer(i)} } />
         ))}
       </div>
+    </div>
+  )
+}
+
+function Answer({
+  answer,
+  onClick
+}: {
+  answer: string
+  onClick: () => void
+}) {
+  return (
+    <div className={styles["answer"]} onClick={onClick}>
+      <span className={styles["text"]}>{answer}</span>
+      <img className={styles["close-icon"]} src="/svgs/close-icon.svg" alt="close icon" />
     </div>
   )
 }

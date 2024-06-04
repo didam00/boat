@@ -25,23 +25,23 @@
       background: $MAIN_COLOR;
       border-color: $MAIN_COLOR;
       
-      padding-right: 2.25rem;
-      
       .text {
-        color: white;
+        // color: transparent;
+        color: $BRIGHT_MAIN_COLOR;
       }
 
       .close-icon {
-        right: 8px;
+        top: calc(50% - 12px);
+        left: calc(50% - 12px);
       }
     }
 
     .close-icon {
       position: absolute;
-      top: calc(50% - 10px); // height: 24px
-      right: -28px;
-      
-      height: 20px;
+      top: 100%;
+      left: calc(50% - 12px);
+
+      height: 24px;
     }
   }
 }

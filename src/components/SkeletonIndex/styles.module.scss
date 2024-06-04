@@ -1,0 +1,13 @@
+@import "@/styles/variables";
+
+.skeleton-index {
+  height: 1rem;
+
+  border-radius: 1rem;
+  background-color: $WHITE_GRAY_COLOR;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: $BRIGHT_GRAY_COLOR;
+  }
+}

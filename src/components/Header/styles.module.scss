@@ -9,8 +9,9 @@
   height: 60px;
   width: 100%;
 
-  background-color: white;
+  background-color: #ffffff80;
   border-bottom: 1px solid $LINE_GRAY_COLOR;
+  backdrop-filter: brightness(150%) blur(0.5rem);
 
   .h__container {
     display: flex;

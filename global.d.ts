@@ -36,6 +36,7 @@ declare global {
     
     interface ContentType {
       type: "img" | "txt",
-      data: string
+      data: string,
+      caption?: string
     }
 }

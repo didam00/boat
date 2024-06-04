@@ -4,6 +4,8 @@ import ChoiceAnswerBox from "@/components/AnswerBox/ChoiceAnswerBox";
 import MultiChoiceAnswerBox from "@/components/AnswerBox/MultiChoiceAnswerBox";
 import ShortAnswerBox from "@/components/AnswerBox/ShortAnswerBox";
 import MultiShortAnswerBox from "@/components/AnswerBox/MultiShortAnswerBox";
+import Link from "next/link";
+import SkeletonIndex from "@/components/SkeletonIndex/index.client";
 
 const voteFormData: VoteFormType = {
   id: 1,
@@ -118,11 +120,13 @@ export default function VotePage({
 
   return (
     <main>
-      <div className={`m__size top-container`}>
-        <article>
+      <div className={`m__size ${styles["top-container"]}`}>
+        <article className={styles["vote-main"]}>
           <h2>Q. {voteFormData.title}</h2>
+          <span className={styles["category-list"]}>{voteFormData.category.join(" ")}</span>
           {questions}
         </article>
+        <SideBox />
       </div>
     </main>
   )
@@ -141,6 +145,7 @@ function QuestionBox({
     return (
       <Component key={i} className={styles["question-desc"]}>
         {c.type === "img" ? <img src={c.data} /> : c.data}
+        {c.caption ? <span className="caption">{c.caption}</span> : null}
       </Component>
     );
   });
@@ -158,7 +163,7 @@ function QuestionBox({
   }
 
   return (
-    <section className={`${styles["question-box"]} box-container`} key={index}>
+    <section id={`question-${index+1}`} className={`${styles["question-box"]} box-container`} key={index}>
       <h3>{index+1}. {question.title}</h3>
       {descBox}
       <form>
@@ -166,4 +171,18 @@ function QuestionBox({
       </form>
     </section>
   );
+}
+
+function SideBox() {
+  const skeletonIndexList: React.ReactNode[] = voteFormData.questions.map((data, i) => (
+    <SkeletonIndex toId={`question-${i+1}`} data={data} />
+  ))
+
+  return (
+    <div className={styles["side"]}>
+      <div className={styles["skeleton-index-list-container"]}>
+        {skeletonIndexList}
+      </div>
+    </div>
+  )
 }
