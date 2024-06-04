@@ -32,4 +32,10 @@
       background: $WHITE_MAIN_COLOR;
     }
   }
+
+  a {
+    &:link, &:visited, &:focus, &:hover, &:active {
+      color: black;
+    }
+  }
 }

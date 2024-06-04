@@ -85,7 +85,12 @@ const voteFormData: VoteFormType = {
       id: 4,
       type: "multi-short",
       title: "배우고 싶은 언어들을 적어주세요!",
-      content: [],
+      content: [
+        {
+          type: "txt",
+          data: "이거 깜빡이는 거 없애고 추가할 때 **자바스크립트로 뿅!** 하는 효과 추가하면 좋을듯"
+        }
+      ],
       hasOtherChoice: false,
       hasParentQuestion: false
     },

@@ -1,0 +1,47 @@
+@import "@/styles/variables";
+
+.answers-box {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap-reverse;
+  
+  user-select: none;
+
+  .answer {
+    position: relative;
+    overflow: hidden;
+
+    padding: 12px 16px 12px 16px;
+
+    font-weight: 700;
+    color: gray;
+
+    border-radius: 1rem;
+    border: 2px solid $LINE_GRAY_COLOR;
+
+    cursor: pointer;
+
+    &:hover {
+      background: $MAIN_COLOR;
+      border-color: $MAIN_COLOR;
+      
+      padding-right: 2.25rem;
+      
+      .text {
+        color: white;
+      }
+
+      .close-icon {
+        right: 8px;
+      }
+    }
+
+    .close-icon {
+      position: absolute;
+      top: calc(50% - 10px); // height: 24px
+      right: -28px;
+      
+      height: 20px;
+    }
+  }
+}
