@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { KeyboardEventHandler, useState } from "react";
 import styles from "./styles.module.scss";

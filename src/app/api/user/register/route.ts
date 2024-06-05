@@ -1,6 +1,7 @@
 import User, { UserSchema } from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
+import { AddressType } from "@/models/User";
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,7 +13,8 @@ export async function POST(req: NextRequest) {
       name,
       nickname,
       phoneNumber,
-      address,
+      country,
+      city,
       birth,
       job,
       gender,
@@ -38,6 +40,11 @@ export async function POST(req: NextRequest) {
 
     const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(password, salt);
+
+    const address: AddressType = {
+      country: country,
+      city: city
+    }
 
     const newUser = new User({
       username,

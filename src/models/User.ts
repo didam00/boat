@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 export interface AddressType {
-  province: string,
+  country: string,
   city: string,
 }
 

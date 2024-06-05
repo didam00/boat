@@ -3,8 +3,7 @@ import EssayAnswerBox from "@/components/AnswerBox/EssayAnswerBox";
 import ChoiceAnswerBox from "@/components/AnswerBox/ChoiceAnswerBox";
 import MultiChoiceAnswerBox from "@/components/AnswerBox/MultiChoiceAnswerBox";
 import ShortAnswerBox from "@/components/AnswerBox/ShortAnswerBox";
-import MultiShortAnswerBox from "@/components/AnswerBox/MultiShortAnswerBox";
-import Link from "next/link";
+import MultiShortAnswerBox from "@/components/AnswerBox/MultiShortAnswerBox/index.client";
 import SkeletonIndex from "@/components/SkeletonIndex/index.client";
 
 const voteFormData: VoteFormType = {
