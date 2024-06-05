@@ -1,8 +1,28 @@
+"use client"
+
+import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
+import axios from "axios";
 
 export default function RegisterPage() {
+  const router = useRouter();
+  
+  const submitAccount = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await axios.post("/api/user/register", data);
+      router.back();
+    } catch {
+      console.log("Register Failed");
+    }
+  }
+
   return (
-    <form action="/api/user/register" className={styles.form}>
+    <form className={styles.form} onSubmit={submitAccount}>
       <div className={styles.formGroup}>
         <label htmlFor="email" className={styles.formLabel}>이메일</label>
         <input id="email" name="email" type="email" className={styles.formInput} />
