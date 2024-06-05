@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 export interface AddressType {
   country: string,
@@ -33,4 +33,4 @@ const userSchema = new Schema<UserSchema>({
   timestamps: true
 });
 
-export default model<UserSchema>('users', userSchema);
+export default models.users || model<UserSchema>("users", userSchema);

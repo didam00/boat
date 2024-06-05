@@ -2,6 +2,9 @@ import User, { UserSchema } from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import { AddressType } from "@/models/User";
+import connect from "@/lib/db";
+
+connect();
 
 export async function POST(req: NextRequest) {
   try {
