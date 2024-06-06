@@ -1,8 +1,17 @@
+"use client"
+
 import styles from "./page.module.scss";
 import SmallInputBox from "@/components/SmallInputBox";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { FormEvent, useState } from "react";
+import { findDOMNode } from "react-dom";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   return (
     <main>
       <div className={`m__size ${styles["top-container"]}`} >
@@ -17,11 +26,35 @@ export default function LoginPage() {
 }
 
 function LoginForm() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const submitAccount = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+
+    setLoading(true);
+    try {
+      const res = await axios.post("/api/user/login", data);
+      router.back();
+      console.log("Login Successfully: @" + res.data.user.username);
+    } catch {
+      console.log("Login Failed");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <form className={styles["form-container"]}>
+    <form
+      className={styles["form-container"]}
+      onSubmit={submitAccount}
+    >
       <SmallInputBox
         type="text"
-        name="id"
+        name="username"
         placeholder="아이디를 입력해주세요"
         required={true}
         pattern="[A-Za-z0-9_]+"

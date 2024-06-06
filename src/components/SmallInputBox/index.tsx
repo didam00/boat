@@ -20,8 +20,9 @@ export default function SmallInputBox({
 }) {
   return (
     <div className={styles["input-box"]}>
-      <input 
+      <input
         type={type}
+        id={name}
         name={name}
         placeholder={placeholder}
         required={required}
