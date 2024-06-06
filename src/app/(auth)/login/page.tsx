@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { FormEvent, useState } from "react";
-import { findDOMNode } from "react-dom";
 
 export default function LoginPage() {
   const router = useRouter();
