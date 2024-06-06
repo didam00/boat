@@ -14,12 +14,12 @@ export default function Header() {
         </Link>
         <nav className={styles["r__navbar"]}>
           <ul className={styles["navbar-menu"]}>
-            <CategoryItem href="/short-forms-list">쇼트 폼</CategoryItem>
-            <CategoryItem href="/all-forms-list">모든 설문</CategoryItem>
+            <CategoryItem href="/form/shorts">쇼트 폼</CategoryItem>
+            <CategoryItem href="/form/all">모든 설문</CategoryItem>
             <CategoryItem href="/my-page">마이페이지</CategoryItem>
           </ul>
           <div style={{flex: "1 0 0"}}></div>
-          <Link href="/">
+          <Link href="/form/create">
             <div className={styles["new_form-container"]}>
               <div className={styles["new_form-button"]}>
                 새로운 폼 생성

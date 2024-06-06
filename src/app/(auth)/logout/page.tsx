@@ -2,22 +2,24 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function LogoutPage() {
   const router = useRouter();
 
-  const logout = async () => {
-    try {
-      await axios.get('/api/user/logout');
-      router.push("/");
-    } catch (error: any) {
-      console.log(error.message)      
+  useEffect(() => {
+    const logout = async () => {
+      try {
+        await axios.get('/api/user/logout');
+        router.push("/");
+      } catch (error: any) {
+        console.log(error.message)      
+      }
     }
-  }
 
-  logout()
+    logout()
+  }, [router])
+
   
-  return (
-    <></>
-  )
-}
+  return null;
+} 

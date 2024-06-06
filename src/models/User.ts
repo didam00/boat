@@ -16,6 +16,7 @@ export interface UserSchema {
   birth: Date,
   job: string,
   gender: string,
+  point: number,
 }
 
 const userSchema = new Schema<UserSchema>({
@@ -29,6 +30,7 @@ const userSchema = new Schema<UserSchema>({
   birth:        {type: Date},
   job:          {type: String},
   gender:       {type: String},
+  point:        {type: Number}
 }, {
   timestamps: true
 });
