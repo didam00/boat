@@ -8,7 +8,7 @@ export default function LogoutPage() {
 
   const logout = async () => {
     try {
-      await axios.get('/api/users/logout');
+      await axios.get('/api/user/logout');
       router.push("/");
     } catch (error: any) {
       console.log(error.message)      
