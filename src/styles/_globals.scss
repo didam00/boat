@@ -22,17 +22,17 @@
   overflow-y: scroll;
 }
 
-h2 {
+h2, .page_title-style {
   display: inline-block;
   margin: 0;
   margin-bottom: 1.5rem;
   font-weight: 800;
   font-size: 1.75rem;
-  
-  &.page_title {
-    height: 35px;
-    margin-bottom: 25px;
-  }
+}
+
+.page_title, .page_title-style {
+  height: 35px;
+  margin-bottom: 25px;
 }
 
 h3 {
@@ -40,6 +40,10 @@ h3 {
   margin: 0;
   font-weight: 700;
   font-size: 1.25rem;
+}
+
+*::placeholder {
+  color: $BRIGHT_GRAY_COLOR;
 }
 
 body {
@@ -74,6 +78,21 @@ main {
   }
 }
 
+.small-side {
+  position: fixed;
+  top: $HEADER_HEIGHT;
+  right: calc((100vw - $CONTAINER_WIDTH) / 2);
+  overflow: visible;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: calc(100% - $HEADER_HEIGHT * 2);
+  width: $RIGHT_SIDE_WIDTH - 200px;
+  padding-bottom: $HEADER_HEIGHT;
+}
+
 .card-group-row {
   display: flex;
   width: 100%;
@@ -96,6 +115,20 @@ main {
   margin: 15px 0;
   height: 30px;
   text-align: center;
+}
+
+input.clean {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  
+  color: $DARK_GRAY_COLOR;
+  font-family: "Pretendard";
+
+  &:hover {
+    background-color: $WHITE_GRAY_COLOR;
+  }
 }
 
 // * checkbox

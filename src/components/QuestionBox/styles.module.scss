@@ -1,0 +1,69 @@
+@import "@/styles/variables";
+
+.question-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  
+  border-color: $WHITE_GRAY_COLOR;
+  
+  &:not(.editable) {
+    margin-bottom: 1rem;
+  }
+  
+  &:hover {
+    scale: none;
+    box-shadow: none;
+  }
+
+  h3, .question-title{
+    margin-bottom: 0.5rem;
+
+    &.editable {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+  
+  span.question-desc {
+    font-weight: 500;
+    color: gray;
+
+    &::before {
+      content: "";
+      margin-left: 0.25rem;
+    }
+  }
+
+  figure.question-desc {
+    display: flex;
+    justify-content: center;
+    
+    img {
+      border-radius: 8px;
+      max-width: 75%;
+    }
+  }
+
+  input:checked + label {
+    color: $MAIN_COLOR;
+  }
+
+  label, label span {
+    transition: color 0ms;
+  }
+
+  &:has(input:checked) {
+    h3 {
+      color: $SUB_COLOR;
+    }
+  }
+
+  .answer-box.essay-answer > div {
+    display: flex;
+
+    & > input {
+      flex-grow: 1;
+    }
+  }
+}

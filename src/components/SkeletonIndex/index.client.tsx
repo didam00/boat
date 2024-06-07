@@ -4,10 +4,12 @@ import styles from "./styles.module.scss";
 
 export default function SkeletonIndex({
   toId,
-  data
+  data,
+  isHovered
 }: {
   toId: string,
-  data: QuestionType
+  data: QuestionType,
+  isHovered: boolean
 }) {
 
   return (
@@ -28,7 +30,7 @@ export default function SkeletonIndex({
     <div
       className={styles["skeleton-index"]}
       style={{
-        width: Math.min(data.title.length*2 + 100, 200)
+        width: Math.min((isHovered ? data.title.length*5 + 20 : data.title.length*2.5 + 10), 200)
       }}
     ></div>
   </a>

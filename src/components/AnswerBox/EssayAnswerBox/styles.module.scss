@@ -26,9 +26,5 @@
     &:focus {
       border-color: $BRIGHT_MAIN_COLOR;
     }
-
-    &::placeholder {
-      color: $BRIGHT_GRAY_COLOR;
-    }
   }
 }

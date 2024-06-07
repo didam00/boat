@@ -1,10 +1,6 @@
+import QuestionBox from "@/components/QuestionBox";
 import styles from "./page.module.scss";
-import EssayAnswerBox from "@/components/AnswerBox/EssayAnswerBox";
-import ChoiceAnswerBox from "@/components/AnswerBox/ChoiceAnswerBox";
-import MultiChoiceAnswerBox from "@/components/AnswerBox/MultiChoiceAnswerBox";
-import ShortAnswerBox from "@/components/AnswerBox/ShortAnswerBox";
-import MultiShortAnswerBox from "@/components/AnswerBox/MultiShortAnswerBox/index.client";
-import SkeletonIndex from "@/components/SkeletonIndex/index.client";
+import FormPageSideBox from "@/components/FormPageSideBox";
 
 const voteFormData: VoteFormType = {
   id: 1,
@@ -125,63 +121,8 @@ export default function VotePage({
           <span className={styles["category-list"]}>{voteFormData.category.join(" ")}</span>
           {questions}
         </article>
-        <SideBox />
+        <FormPageSideBox voteFormData={voteFormData} />
       </div>
     </main>
-  )
-}
-
-function QuestionBox({
-  question,
-  index
-}: {
-  question: QuestionType
-  index: number
-}) {
-  let answerBox: React.ReactNode;
-  let descBox: JSX.Element[] = question.content.map((c, i) => {
-    const Component = c.type === "img" ? "figure" : "span";
-    return (
-      <Component key={i} className={styles["question-desc"]}>
-        {c.type === "img" ? <img src={c.data} /> : c.data}
-        {c.caption ? <span className="caption">{c.caption}</span> : null}
-      </Component>
-    );
-  });
-
-  if (question.type === "choice" && question.choices) {
-    answerBox = <ChoiceAnswerBox choices={question.choices} index={index} />
-  } else if (question.type === "multi-choice" && question.choices) {
-    answerBox = <MultiChoiceAnswerBox choices={question.choices} index={index} />
-  } else if (question.type === "short") {
-    answerBox = <ShortAnswerBox index={index} />
-  } else if (question.type === "multi-short") {
-    answerBox = <MultiShortAnswerBox index={index} />
-  } else if (question.type === "essay") {
-    answerBox = <EssayAnswerBox index={index} />
-  }
-
-  return (
-    <section id={`question-${index+1}`} className={`${styles["question-box"]} box-container`} key={index}>
-      <h3>{index+1}. {question.title}</h3>
-      {descBox}
-      <form>
-        {answerBox ? answerBox : null}
-      </form>
-    </section>
-  );
-}
-
-function SideBox() {
-  const skeletonIndexList: React.ReactNode[] = voteFormData.questions.map((data, i) => (
-    <SkeletonIndex toId={`question-${i+1}`} data={data} />
-  ))
-
-  return (
-    <div className={styles["side"]}>
-      <div className={styles["skeleton-index-list-container"]}>
-        {skeletonIndexList}
-      </div>
-    </div>
   )
 }

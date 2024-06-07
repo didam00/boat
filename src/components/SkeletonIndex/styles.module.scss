@@ -1,7 +1,7 @@
 @import "@/styles/variables";
 
 .skeleton-index {
-  height: 1rem;
+  height: 0.75rem;
 
   border-radius: 1rem;
   background-color: $WHITE_GRAY_COLOR;
@@ -9,5 +9,6 @@
   
   &:hover {
     background-color: $BRIGHT_GRAY_COLOR;
+    
   }
 }

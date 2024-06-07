@@ -1,0 +1,63 @@
+@import "@/styles/variables";
+
+.create-main {
+  width: $LEFT_SIDE_WIDTH + 200px;
+}
+  
+.cp__h2 {
+  margin-top: -1px;
+  display: inline-block;
+  margin-bottom: calc(24px - 1rem);
+
+  &:hover {
+    background: $WHITE_GRAY_COLOR;
+  }
+}
+
+.question-manager {
+  .add-block {
+    display: block;
+  }
+  
+  line-height: 0;
+}
+
+.add-question-button {
+  height: 1rem;
+  width: 100%;
+
+  color: transparent;
+
+  border: none;
+
+  margin: 0;
+  padding: 0;
+  
+  background-color: transparent;
+  
+  cursor: pointer;
+
+  > div {
+    height: 1rem;
+    border-radius: 0.5rem;
+    color: $BRIGHT_GRAY_COLOR;
+    font-family: "Pretendard";
+    font-weight: 600;
+    font-size: 0;
+  }
+  
+  &:hover {
+    height: 4rem;
+    padding: 1rem 0;
+    
+    > div {
+      height: 1.25rem;
+      padding: 0.5rem 0;
+      background-color: $WHITE_GRAY_COLOR;
+
+      > span {
+        font-size: 1rem;
+      }
+    }
+  }
+}

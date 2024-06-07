@@ -21,8 +21,8 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/form/create",
+    // "/form/create",
     "/login",
-    "/register"
+    "/register",
   ]
 };
