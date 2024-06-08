@@ -20,6 +20,7 @@ export default function QuestionBox({
   updateQuestion?: (index: number, updatedQuestion: QuestionType) => void;
 }) {
   let titleNode: React.ReactNode;
+  let optionNode: React.ReactNode;
   let answerBox: React.ReactNode;
   let descBox: JSX.Element[];
   
@@ -33,8 +34,26 @@ export default function QuestionBox({
           updateQuestion(index, {...question, title: event.target.value})
         }}
         autoComplete="off"
+        defaultValue={question.title}
       >
       </input>
+    )
+    
+    optionNode = (
+      <form>
+        <div>
+          <label htmlFor="choice">선택형</label>
+          <input type="radio" name="choice" id="choice-option" />
+        </div>
+        <div>
+          <label htmlFor="short">단답형</label>
+          <input type="radio" name="short" id="short-option" />
+        </div>
+        <div>
+          <label htmlFor="essay">서술형</label>
+          <input type="radio" name="essay" id="essay-option" />
+        </div>
+      </form>
     )
   } else {
     titleNode = (<h3 className={styles["question-title"]}>{index+1}. {question.title}</h3>);

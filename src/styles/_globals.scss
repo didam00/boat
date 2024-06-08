@@ -7,6 +7,7 @@
 
 * {
   transition: all 200ms;
+  font-family: "Pretendard";
 
   &::selection {
     background-color: #000000c0;
@@ -15,7 +16,6 @@
 }
 
 :root {
-  font-family: "Pretendard";
   font-size: 16px;
   color: $DARK_GRAY_COLOR;
 

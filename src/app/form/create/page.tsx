@@ -22,9 +22,9 @@ function CreateContainer() {
 
   const addQuestion = function (event: React.MouseEvent<HTMLButtonElement>, index: number) {
     let newQuestion: QuestionType = {
-      id: 1,
+      id: new Date().getTime(),
       type: "choice",
-      title: "title",
+      title: "",
       content: [],
       choices: [
         {
@@ -44,18 +44,22 @@ function CreateContainer() {
       otherChoiceType: "any",
       hasParentQuestion: false,
     };
-    
-    console.log(index);
 
-    setQuestions(
-      [...questions.toSpliced(index, 1, newQuestion)]
-    );
+    const newQuestions = [...questions];
+    newQuestions.splice(index+1, 0, newQuestion)
+
+    setQuestions(newQuestions);
+
+    console.log(newQuestions.map(q => q.title));
   }
 
   const updateQuestion = function (index: number, updatedQuestion: QuestionType) {
-    setQuestions(
-      [...questions.toSpliced(index, 1, updatedQuestion)]
-    );
+    const newQuestions = [...questions];
+    newQuestions.splice(index, 1, updatedQuestion)
+
+    setQuestions(newQuestions);
+
+    console.log(newQuestions.map(q => q.title));
   }
 
   return (
@@ -72,10 +76,8 @@ function CreateContainer() {
       <div className="question-blocks-container">
         {
           questions.map((question, i) => {
-            console.log(question.title);
-
             return (
-              <div className={styles["question-manager"]} key={i}>
+              <div className={styles["question-manager"]} key={question.id}>
                 <QuestionBox
                   index={i}
                   question={question}
@@ -115,9 +117,7 @@ function AddQuestionButton({
         callback(event, index);
       }}
     >
-      <div>
-        <span>이곳에 추가하기</span>
-      </div>
+      <span>이곳에 추가하기</span>
     </button>
   )
 }
