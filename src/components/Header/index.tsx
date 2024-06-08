@@ -8,7 +8,7 @@ export default function Header() {
         <Link href="/">
           <img
             className={styles["h__logo_image"]}
-            src="images/boat_title_logo.png"
+            src="/images/boat_title_logo.png"
             alt="logo image"
           />
         </Link>

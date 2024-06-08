@@ -49,8 +49,6 @@ function CreateContainer() {
     newQuestions.splice(index+1, 0, newQuestion)
 
     setQuestions(newQuestions);
-
-    console.log(newQuestions.map(q => q.title));
   }
 
   const updateQuestion = function (index: number, updatedQuestion: QuestionType) {
@@ -58,8 +56,6 @@ function CreateContainer() {
     newQuestions.splice(index, 1, updatedQuestion)
 
     setQuestions(newQuestions);
-
-    console.log(newQuestions.map(q => q.title));
   }
 
   return (

@@ -19,6 +19,7 @@
   font-size: 16px;
   color: $DARK_GRAY_COLOR;
 
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
@@ -133,80 +134,32 @@ input.clean {
 
 // * checkbox
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px $WHITE_MAIN_COLOR inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
 
-input[type=checkbox] {
-  display: none;
-}
-
-input[type=checkbox] + label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 500;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 25px;
-    height: 25px;
-    margin-right: 1rem;
-    background-repeat: no-repeat;
-    background-position: -2px -2px;
-
-    // border를 만든다
-    border-radius: 12.5px;
-    box-sizing: border-box;
-    border: 2px solid $LINE_GRAY_COLOR;
-  }
-}
-
-input[type=checkbox] + label::before {
-  background-image: url("/svgs/checkbox-off.svg");
-}
-
-input[type=checkbox]:checked + label::before {
-  background-image: url("/svgs/checkbox-on.svg");
-}
-
-input[type=checkbox] + label:hover::before {
-  border-color: $BRIGHT_GRAY_COLOR;
-}
-
-// * radiobox
-
-input[type=radio] {
-  display: none;
-
-  &::-webkit-autofill,
-  &:-webkit-autofill:hover, 
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
+.checkbox-container {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0px 1000px $WHITE_MAIN_COLOR inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 
-  + label {
+  input[type=checkbox] {
+    display: none;
+  }
+  
+  input[type=checkbox] + label {
     display: flex;
     align-items: center;
     cursor: pointer;
     font-weight: 500;
-
+  
     &::before {
       content: '';
       display: block;
-
       width: 25px;
       height: 25px;
       margin-right: 1rem;
-
-      background-image: url("/svgs/checkbox-off.svg");
       background-repeat: no-repeat;
       background-position: -2px -2px;
   
@@ -215,22 +168,75 @@ input[type=radio] {
       box-sizing: border-box;
       border: 2px solid $LINE_GRAY_COLOR;
     }
-
-    &:hover::before {
-      border-color: $BRIGHT_GRAY_COLOR;
-    }
   }
-
-  &:checked {
-    + label::before {
-      background-image: url("/svgs/checkbox-on.svg");
-    }
+  
+  input[type=checkbox] + label::before {
+    background-image: url("/svgs/checkbox-off.svg");
+  }
+  
+  input[type=checkbox]:checked + label::before {
+    background-image: url("/svgs/checkbox-on.svg");
+  }
+  
+  input[type=checkbox] + label:hover::before {
+    border-color: $BRIGHT_GRAY_COLOR;
   }
 }
 
+// * radiobox
+
 .radio-container {
-  font-size: 1rem;
-  user-select: none;
+  input[type=radio] {
+    display: none;
+  
+    &::-webkit-autofill,
+    &:-webkit-autofill:hover, 
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0px 1000px $WHITE_MAIN_COLOR inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  
+    + label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 500;
+  
+      &::before {
+        content: '';
+        display: block;
+  
+        width: 25px;
+        height: 25px;
+        margin-right: 1rem;
+  
+        background-image: url("/svgs/checkbox-off.svg");
+        background-repeat: no-repeat;
+        background-position: -2px -2px;
+    
+        // border를 만든다
+        border-radius: 12.5px;
+        box-sizing: border-box;
+        border: 2px solid $LINE_GRAY_COLOR;
+      }
+  
+      &:hover::before {
+        border-color: $BRIGHT_GRAY_COLOR;
+      }
+    }
+  
+    &:checked {
+      + label::before {
+        background-image: url("/svgs/checkbox-on.svg");
+      }
+    }
+  }
+  
+  .radio-container {
+    font-size: 1rem;
+    user-select: none;
+  }
 }
 
 .checkbox-container {

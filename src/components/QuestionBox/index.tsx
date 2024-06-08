@@ -40,18 +40,18 @@ export default function QuestionBox({
     )
     
     optionNode = (
-      <form>
-        <div>
+      <form className={styles["type-option-form"]}>
+        <div className={styles["type-option-container"]}>
           <label htmlFor="choice">선택형</label>
-          <input type="radio" name="choice" id="choice-option" />
+          <input type="radio" name="type-options" id="choice-option" />
         </div>
-        <div>
+        <div className={styles["type-option-container"]}>
           <label htmlFor="short">단답형</label>
-          <input type="radio" name="short" id="short-option" />
+          <input type="radio" name="type-options" id="short-option" />
         </div>
-        <div>
+        <div className={styles["type-option-container"]}>
           <label htmlFor="essay">서술형</label>
-          <input type="radio" name="essay" id="essay-option" />
+          <input type="radio" name="type-options" id="essay-option" />
         </div>
       </form>
     )
@@ -92,6 +92,7 @@ export default function QuestionBox({
       <form>
         {answerBox ? answerBox : null}
       </form>
+      {optionNode}
     </section>
   );
 }

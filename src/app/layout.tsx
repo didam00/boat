@@ -2,7 +2,10 @@ import Header from "@/components/Header";
 import "@/styles/_globals.scss";
 
 export const metadata = {
-  title: "boat"
+  title: {
+    default: "boat",
+    templace: "%s - boat"
+  }
 }
 
 export default function RootLayout({

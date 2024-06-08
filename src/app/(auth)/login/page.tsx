@@ -14,6 +14,7 @@ export default function LoginPage() {
   return (
     <main>
       <div className={`m__size ${styles["top-container"]}`} >
+        <BackgroundObjects />
         <section className={styles["main-content"]}>
           <Logo />
           <LoginForm />
@@ -66,7 +67,7 @@ function LoginForm() {
         required={true}
         pattern="[A-Za-z0-9_]+"
       />
-      <button className={`submit-button`}>
+      <button type="submit" className={`submit-button`}>
         <span className={styles["text"]}>
           로그인
         </span>
@@ -89,6 +90,15 @@ function ForgotPassword() {
       <Link href="/">
         혹시 비밀번호를 잃어버리셨나요?
       </Link>
+    </div>
+  )
+}
+
+function BackgroundObjects() {
+  return (
+    <div className={styles["background-objects"]}>
+      <img src="/svgs/login-backobject.svg" />
+      <img src="/svgs/login-backobject.svg" />
     </div>
   )
 }

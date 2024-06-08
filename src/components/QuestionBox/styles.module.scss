@@ -65,3 +65,35 @@
     }
   }
 }
+
+.type-option-form {
+  display: flex;
+
+  margin-top: 1rem;
+  
+  line-height: normal;
+  font-weight: 600;
+  color: #e8e8e8;
+
+  .type-option-container {
+    border: 2px solid $LINE_GRAY_COLOR;
+    margin: 0 -1px;
+    padding: 8px 12px;
+
+    &:first-child {
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+
+    &:last-child {
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    input {
+      display: none;
+    }
+
+    label {
+      cursor: pointer;
+    }
+  }
+}
