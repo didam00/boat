@@ -25,6 +25,11 @@ export default function CreateFormPage() {
       author: "author",
       questions: questions,
     }
+
+    if (formTitle === "" && questions.length === 0) {
+      alert("제목도 없고 내용도 없는 폼을 왜 올리시나요");
+      return;
+    }
   }
 
   return (
@@ -180,7 +185,8 @@ function CreateContainer({
           }}
         >
           <h5>카테고리</h5>
-          <input type="text" className="clean"
+          <input type="text" className={`clean ${styles["form-category"]}`}
+            placeholder="공백으로 카테고리를 구분할 수 있어요."
             onBlur={(event: React.FocusEvent<HTMLInputElement>) => {
               setCategory(event.target.value.split(" "));
             }}
