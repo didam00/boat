@@ -14,6 +14,7 @@ export default function VotePage({
   }
 }) {
   const [voteFormData, setVoteFormData] = useState<VoteFormType>();
+  console.log(params.formId);
 
   useEffect(() => {
     const fetchForm = async () => {
