@@ -1,7 +1,7 @@
-import User, { UserSchema } from "@/models/User";
+import Users, { UsersSchema } from "@/models/Users";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import { AddressType } from "@/models/User";
+import { AddressType } from "@/models/Users";
 import connect from "@/lib/db";
 import jwt from "jsonwebtoken";
 
@@ -15,11 +15,11 @@ export async function POST(req: NextRequest) {
       password,
     } = reqBody;
 
-    const user = await User.findOne({username});
+    const user = await Users.findOne({username});
 
     if (!user) {
       return NextResponse.json({
-        error: "User does not exist"
+        error: "Users does not exist"
       }, {
         status: 400
       });

@@ -5,7 +5,8 @@ export interface AddressType {
   city: string,
 }
 
-export interface UserSchema {
+export interface UsersSchema {
+  _id: string,
   username: string,
   password: string,
   email: string,
@@ -19,7 +20,7 @@ export interface UserSchema {
   point: number,
 }
 
-const userSchema = new Schema<UserSchema>({
+const usersSchema = new Schema<UsersSchema>({
   username:     {type: String, required: true, unique: true},
   password:     {type: String, required: true},
   email:        {type: String, required: true},
@@ -35,4 +36,4 @@ const userSchema = new Schema<UserSchema>({
   timestamps: true
 });
 
-export default models.users || model<UserSchema>("users", userSchema);
+export default models.users || model<UsersSchema>("users", usersSchema);

@@ -6,6 +6,7 @@ import SkeletonIndex from "@/components/SkeletonIndex/index.client";
 import QuestionBox from "@/components/QuestionBox";
 import FormPageSideBox from "@/components/FormPageSideBox";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 export default function CreateFormPage() {
   const [questions, setQuestions] = useState<Question[]>([])
@@ -14,17 +15,19 @@ export default function CreateFormPage() {
   const [category, setCategory] = useState<string[]>([]);
   const [formTitle, setFormTitle] = useState<string>("");
 
-  const uploadForm = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const uploadForm = async (event: React.MouseEvent<HTMLButtonElement>) => {
     const newForm: VoteFormType = {
-      public: isPublic,
+      isPublic: isPublic,
       isShortForm: isShort,
       category: category,
       votes: 0,
       views: 0,
       title: formTitle,
-      author: "author",
+      author: ((await axios.get("/api/user/me")).data.data._id),
       questions: questions,
     }
+
+    const res = await axios.post("/api/form/upload", newForm);
 
     if (formTitle === "" && questions.length === 0) {
       alert("제목도 없고 내용도 없는 폼을 왜 올리시나요");

@@ -1,7 +1,7 @@
-import User, { UserSchema } from "@/models/User";
+import Users, { UsersSchema } from "@/models/Users";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import { AddressType } from "@/models/User";
+import { AddressType } from "@/models/Users";
 import connect from "@/lib/db";
 
 connect();
@@ -25,19 +25,19 @@ export async function POST(req: NextRequest) {
     } = reqBody;
 
 
-    if (await User.findOne({username})) {
+    if (await Users.findOne({username})) {
       return NextResponse.json({
         error: "Username already exsits."
       }, {status: 400});
     }
 
-    if (await User.findOne({email})) {
+    if (await Users.findOne({email})) {
       return NextResponse.json({
         error: "Email already exsits."
       }, {status: 400});
     }
 
-    if (await User.findOne({nickname})) {
+    if (await Users.findOne({nickname})) {
       return NextResponse.json({
         error: "Nickname already exsits."
       }, {status: 400});
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
       city: city
     }
 
-    const newUser = new User({
+    const newUser = new Users({
       username,
       password: hashedPassword,
       email,
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
     const savedUser = await newUser.save();
     
     return NextResponse.json({
-      message: "User created successfully",
+      message: "Users created successfully",
       success: true,
       savedUser
     })
