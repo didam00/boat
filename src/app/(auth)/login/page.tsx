@@ -8,7 +8,6 @@ import axios from "axios";
 import { FormEvent, useState } from "react";
 
 export default function LoginPage() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   return (

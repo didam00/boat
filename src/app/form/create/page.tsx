@@ -7,8 +7,11 @@ import QuestionBox from "@/components/QuestionBox";
 import FormPageSideBox from "@/components/FormPageSideBox";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function CreateFormPage() {
+  const router = useRouter();
+
   const [questions, setQuestions] = useState<Question[]>([])
   const [isPublic, setIsPublic] = useState(true);
   const [isShort, setIsShort] = useState(false);
@@ -28,6 +31,7 @@ export default function CreateFormPage() {
     }
 
     const res = await axios.post("/api/form/upload", newForm);
+    router.push("/");
 
     if (formTitle === "" && questions.length === 0) {
       alert("제목도 없고 내용도 없는 폼을 왜 올리시나요");

@@ -1,6 +1,6 @@
 "use client"
 
-import axios from "axios"
+import axios from "axios";
 import { useState } from "react";
 
 // skeleton 구조로 먼저 UI 표시ㅐ주기

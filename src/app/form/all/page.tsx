@@ -1,21 +1,53 @@
 import styles from "./page.module.scss";
 import Filter from "@/components/Filter";
 import FormRow from "@/components/FormRow";
+import axios from "axios";
 
-let shortForms: JSX.Element[] = [];
-for (let i = 1; i <= 50; i++) {
-  shortForms.push(
-    <FormRow
-      key={`form_row-${i}`}
-      title={`타이틀 제목 ${i}`}
-      category="프로그래밍"
-      participants={Math.floor(Math.random() * 200)}
-      isShort={Math.random() < 0.25}
-    />
-  );
+// for (let i = 1; i <= 50; i++) {
+//   shortForms.push(
+//     <FormRow
+//       key={`form_row-${i}`}
+//       title={`타이틀 제목 ${i}`}
+//       category="프로그래밍"
+//       participants={Math.floor(Math.random() * 200)}
+//       isShort={Math.random() < 0.25}
+//     />
+//   );
+// }
+
+interface FormListData {
+  _id: string;
+  title: string;
+  category: string[];
+  views: number;
+  votes: number;
+  isShortForm: boolean;
+  author: string;
 }
 
-export default function AllFormsList() {
+export default async function AllFormsList() {
+  let shortForms: React.ReactNode[] = [];
+
+  try {
+    const getList = async () => {
+      const res = await axios.get("/api/form/getList");
+    }
+
+    getList();
+
+    // shortForms = list.map((data: FormListData) => (
+    //   <FormRow
+    //     key={data._id}
+    //     title={data.title}
+    //     category={data.category[0]}
+    //     participants={data.votes}
+    //     isShort={data.isShortForm}
+    //   />
+    // ))
+  } catch (error: any) {
+    console.log(error);
+  }
+
   return (
     <main>
       <div className={`m__size ${styles["top-container"]}`} style={{display: "flex"}}>
