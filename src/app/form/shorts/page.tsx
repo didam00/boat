@@ -1,6 +1,7 @@
 import ShortForm from "@/components/ShortForm";
 import styles from "./page.module.scss";
 import Filter from "@/components/Filter";
+import LineNotice from "@/components/LineNotice";
 
 export default function ShortFormsList() {
   let shortForms: JSX.Element[] = [];
@@ -16,16 +17,19 @@ export default function ShortFormsList() {
 
   return (
     <main>
-      <div className={`m__size ${styles["top-container"]}`} style={{display: "flex"}}>
-        <section className='left-container'>
-          <div className={`${styles["flex-container"]}`}>
-            <h2 className="page_title">쇼트 폼 목록</h2>
-            <div className={styles["forms-list-container"]}>
-              {shortForms}
+      <div className={`m__size ${styles["top-container"]}`}>
+        <LineNotice text="쇼트 폼은 아직 지원하지 않습니다. 추후 업데이트를 기다려주세요!" />
+        <div className={styles["top-flex-container"]}>
+          <section className='left-container'>
+            <div className={`${styles["flex-container"]}`}>
+              <h2 className="page_title">쇼트 폼 목록</h2>
+              <div className={styles["forms-list-container"]}>
+                {shortForms}
+              </div>
             </div>
-          </div>
-        </section>
-        <Filter />
+          </section>
+          <Filter />
+        </div>
       </div>
     </main>
   )

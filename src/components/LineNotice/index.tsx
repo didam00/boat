@@ -1,15 +1,20 @@
 import styles from "./styles.module.scss";
 
 export default function LineNotice({
-  children,
-  type
+  text,
+  type,
 }: {
-  children?: React.ReactNode
+  text: string,
   type?: string
 }) {
   return (
-    <div className={`m__size ${styles["container"]}`}>
-      {children}
+    <div className={styles["notice-container"]}>
+      <span className={"material-symbols-outlined " + styles["fire-icon"]}>
+        local_fire_department
+      </span>
+      <span>
+        {text}
+      </span>
     </div>
   )
 }

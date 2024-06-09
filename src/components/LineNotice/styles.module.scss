@@ -1,10 +1,27 @@
 @import "../../styles/variables";
 
-.container {
+.notice-container {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+
   font-weight: 700;
-  color: $DARK_GRAY_COLOR;
+  color: $MAIN_COLOR;
   
   background-color: $WHITE_MAIN_COLOR;
-  padding: 19px 60px;
+  
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+
   border-radius: $BORDER_RADIUS;
+
+  .fire-icon {
+    font-variation-settings: 'FILL' 1;
+    margin: -1.5px 8px 1.5px 0;
+  }
+
+  &:hover {
+    border: 2px solid $BRIGHT_MAIN_COLOR;
+  }
 }
