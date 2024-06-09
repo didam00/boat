@@ -5,6 +5,7 @@ import styles from "./page.module.scss";
 import FormPageSideBox from "@/components/FormPageSideBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { GetServerSideProps } from "next";
 
 export default function VotePage({
   params
@@ -14,19 +15,16 @@ export default function VotePage({
   }
 }) {
   const [voteFormData, setVoteFormData] = useState<VoteFormType>();
-  console.log(params.formId);
 
   useEffect(() => {
-    const fetchForm = async () => {
-      const res = await axios.get(`api/form/forms/${params.formId}`)
+    const getVoteFormData = async () => {
+      const res = await axios.get(`/api/form/forms/${params.formId}`);
       setVoteFormData(res.data);
     }
-
-    fetchForm();
-  }, [params.formId]);
+  }, [params.formId])
 
   if (!voteFormData) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   return (
