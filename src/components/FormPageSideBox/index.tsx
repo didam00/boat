@@ -5,13 +5,13 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 
 export default function FormPageSideBox({
-  voteFormData
+  questions
 }: {
-  voteFormData: VoteFormType
+  questions: Question[]
 }) {
   const [isHovered, setIsHovered] = useState(false);
-  const skeletonIndexList: React.ReactNode[] = voteFormData.questions.map((data, i) => (
-    <SkeletonIndex toId={`question-${i+1}`} data={data} isHovered={isHovered} />
+  const skeletonIndexList: React.ReactNode[] = questions.map((data, i) => (
+    <SkeletonIndex toId={`question-${i+1}`} data={data} isHovered={isHovered} key={i} />
   ))
 
   return (

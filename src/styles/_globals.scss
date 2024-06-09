@@ -8,6 +8,7 @@
 * {
   transition: all 200ms;
   font-family: "Pretendard";
+  outline: none;
 
   &::selection {
     background-color: #000000c0;
@@ -41,6 +42,11 @@ h3 {
   margin: 0;
   font-weight: 700;
   font-size: 1.25rem;
+}
+
+h5 {
+  margin: 0 1rem 0 1rem;
+  font-size: 1rem;
 }
 
 *::placeholder {
@@ -128,7 +134,8 @@ input.clean {
   font-family: "Pretendard";
 
   &:hover {
-    background-color: $WHITE_GRAY_COLOR;
+    color: black;
+    scale: 1.01;
   }
 }
 

@@ -17,12 +17,14 @@ declare global {
       views: number,
       title: string,
       author: string,
-      questions: QuestionType[],
+      questions: Question[],
     }
     
-    interface QuestionType {
+    type QuestionType = "short" | "multi-short" | "essay" | "choice" | "multi-choice";
+
+    interface Question {
       id: number,
-      type: "short" | "multi-short" | "essay" | "choice" | "multi-choice",
+      type: QuestionType,
       title: string,
       content: ContentType[],
       hasOtherChoice: boolean,
@@ -31,7 +33,8 @@ declare global {
       maxChoice?: number,
       minChoice?: number,
       hasParentQuestion: boolean,
-      parentQuestion?: number
+      parentQuestion?: number,
+      required: boolean,
     }
     
     interface ContentType {

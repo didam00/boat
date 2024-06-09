@@ -21,15 +21,52 @@
 .create-main {
   width: $LEFT_SIDE_WIDTH + 200px;
 }
+
+.form-option {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+  padding: 1rem;
+  margin: 1rem 0 0 0;
+  
+  border-radius: 1rem;
+  border: 2px solid transparent;
+
+  user-select: none;
+
+  h5 {
+    width: 100px;
+  }
+  
+  .form-option-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    label {
+      font-weight: 600 !important;
+      color: $DARK_GRAY_COLOR;
+  
+      &::before {
+        margin-right: 8px !important;
+      }
+    }
+  
+    input:checked + label {
+      color: $MAIN_COLOR;
+    }
+  }
+
+  &:hover {
+    border: 2px solid $LINE_GRAY_COLOR;
+  }
+}
   
 .cp__h2 {
   margin-top: -1px;
   display: inline-block;
   margin-bottom: calc(24px - 1rem);
-
-  &:hover {
-    background: $WHITE_GRAY_COLOR;
-  }
 }
 
 .question-manager {

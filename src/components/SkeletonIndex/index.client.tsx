@@ -8,7 +8,7 @@ export default function SkeletonIndex({
   isHovered
 }: {
   toId: string,
-  data: QuestionType,
+  data: Question,
   isHovered: boolean
 }) {
 

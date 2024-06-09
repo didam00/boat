@@ -1,59 +1,75 @@
 "use client"
 
 import styles from "./page.module.scss";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import SkeletonIndex from "@/components/SkeletonIndex/index.client";
 import QuestionBox from "@/components/QuestionBox";
+import FormPageSideBox from "@/components/FormPageSideBox";
 
 export default function CreateFormPage() {
+  let [questions, setQuestions] = useState<Question[]>([])
+
   return (
     <main>
       <div className={`m__size`}>
-        <CreateContainer />
-        <SideBox />
+        <CreateContainer questions={questions} setQuestions={setQuestions}/>
+        <FormPageSideBox questions={questions}/>
       </div>
     </main>
   )
 }
 
-
-function CreateContainer() {
-  let [questions, setQuestions] = useState<QuestionType[]>([])
+function CreateContainer({
+  questions,
+  setQuestions
+}: {
+  questions: Question[];
+  setQuestions: Dispatch<SetStateAction<Question[]>>;
+}) {
+  let [defaultQuestionType, setDefaultQuestionType] = useState<QuestionType>("choice");
 
   const addQuestion = function (event: React.MouseEvent<HTMLButtonElement>, index: number) {
-    let newQuestion: QuestionType = {
+    let newQuestion: Question = {
       id: new Date().getTime(),
-      type: "choice",
+      type: defaultQuestionType,
       title: "",
       content: [],
       choices: [
         {
           type: "txt",
-          data: "선택지",
+          data: "",
         },
         {
           type: "txt",
-          data: "선택지",
+          data: "",
         },
         {
           type: "txt",
-          data: "선택지",
+          data: "",
         },
       ],
       hasOtherChoice: false,
       otherChoiceType: "any",
       hasParentQuestion: false,
+      required: false,
     };
 
     const newQuestions = [...questions];
-    newQuestions.splice(index+1, 0, newQuestion)
+    newQuestions.splice(index, 0, newQuestion)
 
     setQuestions(newQuestions);
+
+    console.log(questions);
   }
 
-  const updateQuestion = function (index: number, updatedQuestion: QuestionType) {
+  const updateQuestion = function (index: number, updatedQuestion?: Question) {
     const newQuestions = [...questions];
-    newQuestions.splice(index, 1, updatedQuestion)
+
+    if (updatedQuestion) {
+      newQuestions.splice(index, 1, updatedQuestion);
+    } else {
+      newQuestions.splice(index, 1);
+    }
 
     setQuestions(newQuestions);
   }
@@ -67,6 +83,48 @@ function CreateContainer() {
         autoComplete="off"
       />
 
+      <div className={`${styles["form-option"]}`}>
+        <div className={styles["form-option-row"]}>
+          <h5>폼 설정</h5>
+          <div className="checkbox-container">
+            <input type="checkbox" name="form-options" id="public-form-option" />
+            <label htmlFor="public-form-option">공개 폼</label>
+          </div>
+          <div className="checkbox-container">
+            <input type="checkbox" name="form-options" id="short-form-option" />
+            <label htmlFor="short-form-option">쇼트 폼</label>
+          </div>
+        </div>
+        <div
+          className={styles["form-option-row"]}
+          onChange={(event: React.ChangeEvent<HTMLDivElement>) => {
+            setDefaultQuestionType(event.target.id.slice(15) as QuestionType);
+          }}
+        >
+          <h5>기본 문항 값</h5>
+          <div className="radio-container">
+            <input type="radio" name="default-question-options" id="default_option-choice" defaultChecked />
+            <label htmlFor="default_option-choice">선택형</label>
+          </div>
+          <div className="radio-container">
+            <input type="radio" name="default-question-options" id="default_option-multi-choice" />
+            <label htmlFor="default_option-multi-choice">다중선택형</label>
+          </div>
+          <div className="radio-container">
+            <input type="radio" name="default-question-options" id="default_option-short" />
+            <label htmlFor="default_option-short">단답형</label>
+          </div>
+          <div className="radio-container">
+            <input type="radio" name="default-question-options" id="default_option-multi-short" />
+            <label htmlFor="default_option-multi-short">다답형</label>
+          </div>
+          <div className="radio-container">
+            <input type="radio" name="default-question-options" id="default_option-essay" />
+            <label htmlFor="default_option-essay">서술형</label>
+          </div>
+        </div>
+      </div>
+
       <AddQuestionButton index={0} callback={addQuestion} />
       
       <div className="question-blocks-container">
@@ -75,25 +133,17 @@ function CreateContainer() {
             return (
               <div className={styles["question-manager"]} key={question.id}>
                 <QuestionBox
-                  index={i}
+                  questionIndex={i}
                   question={question}
                   editable={true}
                   updateQuestion={updateQuestion}
                 />
-                <AddQuestionButton index={i} callback={addQuestion} />
+                <AddQuestionButton index={i+1} callback={addQuestion} />
               </div>
             )
           })
         }
       </div>
-    </section>
-  )
-}
-
-function SideBox() {
-  return (
-    <section className={`${styles["side"]} small-side`}>
-      {/* <SkeletonIndex /> */}
     </section>
   )
 }

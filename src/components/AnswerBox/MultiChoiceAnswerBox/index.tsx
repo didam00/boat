@@ -2,10 +2,12 @@ import styles from "./styles.module.scss";
 
 export default function MultiChoiceAnswerBox({
   choices,
-  index
+  index,
+  editable = false
 }: {
-  choices: ContentType[],
-  index: number
+  choices: ContentType[];
+  index: number;
+  editable?: boolean;
 }) {
   const choicesMapping: JSX.Element[] = choices.map((choice, i) => 
     <div className="checkbox-container" key={`choice-${index}-${i}`}>

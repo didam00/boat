@@ -17,7 +17,7 @@
     
     transition: all 200ms;
     resize: none;
-    height: 120px;
+    min-height: 70px;
     
     &:hover {
       border-color: $WHITE_MAIN_COLOR;

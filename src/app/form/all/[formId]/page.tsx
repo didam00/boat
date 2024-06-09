@@ -33,7 +33,8 @@ const voteFormData: VoteFormType = {
       ],
       hasOtherChoice: true,
       otherChoiceType: "number",
-      hasParentQuestion: false
+      hasParentQuestion: false,
+      required: false,
     },
     {
       id: 2,
@@ -55,6 +56,7 @@ const voteFormData: VoteFormType = {
       ],
       hasOtherChoice: false,
       hasParentQuestion: false,
+      required: false,
     },
     {
       id: 3,
@@ -76,7 +78,8 @@ const voteFormData: VoteFormType = {
         },
       ],
       hasOtherChoice: false,
-      hasParentQuestion: false
+      hasParentQuestion: false,
+      required: false,
     },
     {
       id: 4,
@@ -89,7 +92,8 @@ const voteFormData: VoteFormType = {
         }
       ],
       hasOtherChoice: false,
-      hasParentQuestion: false
+      hasParentQuestion: false,
+      required: false,
     },
     {
       id: 5,
@@ -97,7 +101,8 @@ const voteFormData: VoteFormType = {
       title: "해당 언어를 배우고 싶은 이유가 무엇인가요?",
       content: [],
       hasOtherChoice: false,
-      hasParentQuestion: false
+      hasParentQuestion: false,
+      required: false,
     },
   ]
 }
@@ -110,7 +115,7 @@ export default function VotePage({
   }
 }) {
   const questions = voteFormData.questions.map((q, i) => (
-    <QuestionBox question={q} index={i} />
+    <QuestionBox question={q} questionIndex={i} />
   ))
 
   return (
@@ -121,7 +126,7 @@ export default function VotePage({
           <span className={styles["category-list"]}>{voteFormData.category.join(" ")}</span>
           {questions}
         </article>
-        <FormPageSideBox voteFormData={voteFormData} />
+        <FormPageSideBox questions={voteFormData.questions} />
       </div>
     </main>
   )
