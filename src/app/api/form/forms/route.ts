@@ -1,17 +1,16 @@
+import { NextRequest, NextResponse } from "next/server";
 import connect from "@/lib/db";
 import Forms from "@/models/Forms"
-import Users from "@/models/Users";
-import { NextRequest, NextResponse } from "next/server";
 
 connect();
 
 export async function GET(req: NextRequest) {
   try {
-    const formList = await Forms.find().select("-questions");
+    const forms = await Forms.find({}).select("-questions");
     
     return NextResponse.json({
       message: "Forms Found",
-      data: formList
+      data: forms
     })
   } catch (error: any) {
     return NextResponse.json({

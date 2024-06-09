@@ -1,19 +1,11 @@
+"use client"
+
 import styles from "./page.module.scss";
 import Filter from "@/components/Filter";
 import FormRow from "@/components/FormRow";
 import axios from "axios";
-
-// for (let i = 1; i <= 50; i++) {
-//   shortForms.push(
-//     <FormRow
-//       key={`form_row-${i}`}
-//       title={`타이틀 제목 ${i}`}
-//       category="프로그래밍"
-//       participants={Math.floor(Math.random() * 200)}
-//       isShort={Math.random() < 0.25}
-//     />
-//   );
-// }
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface FormListData {
   _id: string;
@@ -26,27 +18,26 @@ interface FormListData {
 }
 
 export default async function AllFormsList() {
-  let shortForms: React.ReactNode[] = [];
+  const [forms, setForms] = useState<FormListData[]>([]);
 
-  try {
-    const getList = async () => {
-      const res = await axios.get("/api/form/getList");
-    }
+  useEffect(() => {
+    const fetchForms = async () => {
+      const res = await axios.get("/api/form/forms");
+      setForms(res.data.data);
+    };
 
-    getList();
+    fetchForms();
+  }, []);
 
     // shortForms = list.map((data: FormListData) => (
     //   <FormRow
     //     key={data._id}
     //     title={data.title}
     //     category={data.category[0]}
-    //     participants={data.votes}
+    //     votes={data.votes}
     //     isShort={data.isShortForm}
     //   />
     // ))
-  } catch (error: any) {
-    console.log(error);
-  }
 
   return (
     <main>
@@ -62,7 +53,15 @@ export default async function AllFormsList() {
                     <th>카테고리</th>
                     <th>참여수</th>
                   </tr>
-                  {shortForms}
+                  {forms.map((form) => (
+                    <FormRow
+                      key={form._id}
+                      title={form.title}
+                      category={form.category[0]}
+                      votes={form.votes}
+                      isShort={form.isShortForm}
+                    />
+                  ))}
                 </tbody>
               </table>
             </div>

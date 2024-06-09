@@ -2,11 +2,11 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 
 export default function FormRow({
-  title, category, participants, isShort
+  title, category, votes, isShort
 }: {
   title: string,
   category: string,
-  participants: number,
+  votes: number,
   isShort?: boolean
 }) {
   return (
@@ -17,7 +17,7 @@ export default function FormRow({
         </span>
       </td>
       <td className={styles["category-value"]}><span>{category}</span></td>
-      <td className={styles["participants-value"]}><span>{participants}명 참여</span></td>
+      <td className={styles["votes-value"]}><span>{votes}명 참여</span></td>
     </tr>
   )
 }
