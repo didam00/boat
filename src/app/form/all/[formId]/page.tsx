@@ -10,18 +10,20 @@ export default function VotePage({
   params
 }: {
   params: {
-    voteId: string
+    formId: string
   }
 }) {
   const [voteFormData, setVoteFormData] = useState<VoteFormType>();
+  console.log(params.formId);
 
   useEffect(() => {
     const fetchForm = async () => {
-      const res = await axios.get("api/form", {
+      const res = await axios.get("/api/form", {
         params: {
-          voteId: params.voteId
+          formId: params.formId
         }
       })
+      setVoteFormData(res.data.data);
     }
 
     fetchForm();
