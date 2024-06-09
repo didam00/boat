@@ -1,5 +1,4 @@
-"use client"
-
+import { GetServerSideProps } from "next";
 import styles from "./page.module.scss";
 import Filter from "@/components/Filter";
 import FormRow from "@/components/FormRow";
@@ -17,7 +16,7 @@ interface FormListData {
   author: string;
 }
 
-export default async function AllFormsList() {
+export default function AllFormsList() {
   const [forms, setForms] = useState<FormListData[]>([]);
 
   useEffect(() => {

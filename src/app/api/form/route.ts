@@ -4,13 +4,14 @@ import Forms from "@/models/Forms"
 
 connect();
 
-export async function GET(req: NextRequest) {
+export async function GET(req: any) {
   try {
-    const forms = await Forms.find({}).select("-questions");
+    const voteId = req.query.voteId;
+    const form = await Forms.findById(voteId);
     
     return NextResponse.json({
       message: "Forms Found",
-      data: forms
+      data: form
     })
   } catch (error: any) {
     return NextResponse.json({
