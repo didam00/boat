@@ -19,20 +19,24 @@ export default function VotePage({
   useEffect(() => {
     const getVoteFormData = async () => {
       const res = await axios.get(`/api/form/forms/${params.formId}`);
-      setVoteFormData(res.data);
+      setVoteFormData(res.data.data);
     }
+
+    getVoteFormData();
   }, [params.formId])
 
   if (!voteFormData) {
     return <div>Loading...</div>
   }
 
+  console.log(voteFormData);
+
   return (
     <main>
       <div className={`m__size ${styles["top-container"]}`}>
         <article className={styles["vote-main"]}>
           <h2>Q. {voteFormData?.title}</h2>
-          <span className={styles["category-list"]}>{voteFormData?.category.join(" ")}</span>
+          <span className={styles["category-list"]}>{voteFormData.category.join(" ")}</span>
           {voteFormData?.questions.map((q, i) => (
             <QuestionBox question={q} questionIndex={i} />
           ))}
