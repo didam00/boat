@@ -1,18 +1,44 @@
 "use client"
 
 import styles from "./page.module.scss";
-import { useState, Dispatch, SetStateAction } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 import SkeletonIndex from "@/components/SkeletonIndex/index.client";
 import QuestionBox from "@/components/QuestionBox";
 import FormPageSideBox from "@/components/FormPageSideBox";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreateFormPage() {
-  let [questions, setQuestions] = useState<Question[]>([])
+  const [questions, setQuestions] = useState<Question[]>([])
+  const [isPublic, setIsPublic] = useState(true);
+  const [isShort, setIsShort] = useState(false);
+  const [category, setCategory] = useState<string[]>([]);
+  const [formTitle, setFormTitle] = useState<string>("");
+
+  const uploadForm = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const newForm: VoteFormType = {
+      public: isPublic,
+      isShortForm: isShort,
+      category: category,
+      votes: 0,
+      views: 0,
+      title: formTitle,
+      author: "author",
+      questions: questions,
+    }
+  }
 
   return (
     <main>
       <div className={`m__size`}>
-        <CreateContainer questions={questions} setQuestions={setQuestions}/>
+        <CreateContainer
+          questions={questions}
+          setQuestions={setQuestions}
+          uploadForm={uploadForm}
+          setIsPublic={setIsPublic}
+          setIsShort={setIsShort}
+          setFormTitle={setFormTitle}
+          setCategory={setCategory}
+        />
         <FormPageSideBox questions={questions}/>
       </div>
     </main>
@@ -21,12 +47,22 @@ export default function CreateFormPage() {
 
 function CreateContainer({
   questions,
-  setQuestions
+  setQuestions,
+  uploadForm,
+  setIsPublic,
+  setIsShort,
+  setFormTitle,
+  setCategory,
 }: {
   questions: Question[];
   setQuestions: Dispatch<SetStateAction<Question[]>>;
+  uploadForm: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  setIsPublic: Dispatch<SetStateAction<boolean>>;
+  setIsShort: Dispatch<SetStateAction<boolean>>;
+  setFormTitle: Dispatch<SetStateAction<string>>;
+  setCategory: Dispatch<SetStateAction<string[]>>;
 }) {
-  let [defaultQuestionType, setDefaultQuestionType] = useState<QuestionType>("choice");
+  const [defaultQuestionType, setDefaultQuestionType] = useState<QuestionType>("choice");
 
   const addQuestion = function (event: React.MouseEvent<HTMLButtonElement>, index: number) {
     let newQuestion: Question = {
@@ -36,14 +72,17 @@ function CreateContainer({
       content: [],
       choices: [
         {
+          id: uuidv4(),
           type: "txt",
           data: "",
         },
         {
+          id: uuidv4(),
           type: "txt",
           data: "",
         },
         {
+          id: uuidv4(),
           type: "txt",
           data: "",
         },
@@ -81,17 +120,28 @@ function CreateContainer({
         type="text"
         placeholder="Q. 제목을 입력해주세요"
         autoComplete="off"
+        onBlur={(event: React.FocusEvent<HTMLInputElement>) => {
+          setFormTitle(event.target.value)
+        }}
       />
 
       <div className={`${styles["form-option"]}`}>
         <div className={styles["form-option-row"]}>
           <h5>폼 설정</h5>
           <div className="checkbox-container">
-            <input type="checkbox" name="form-options" id="public-form-option" />
+            <input type="checkbox" name="form-options" id="public-form-option"
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setIsPublic(event.target.checked)
+              }}
+            />
             <label htmlFor="public-form-option">공개 폼</label>
           </div>
           <div className="checkbox-container">
-            <input type="checkbox" name="form-options" id="short-form-option" />
+            <input type="checkbox" name="form-options" id="short-form-option"
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setIsShort(event.target.checked)
+              }}
+            />
             <label htmlFor="short-form-option">쇼트 폼</label>
           </div>
         </div>
@@ -123,6 +173,19 @@ function CreateContainer({
             <label htmlFor="default_option-essay">서술형</label>
           </div>
         </div>
+        <div
+          className={styles["form-option-row"]}
+          onChange={(event: React.ChangeEvent<HTMLDivElement>) => {
+            setDefaultQuestionType(event.target.id.slice(15) as QuestionType);
+          }}
+        >
+          <h5>카테고리</h5>
+          <input type="text" className="clean"
+            onBlur={(event: React.FocusEvent<HTMLInputElement>) => {
+              setCategory(event.target.value.split(" "));
+            }}
+          />
+        </div>
       </div>
 
       <AddQuestionButton index={0} callback={addQuestion} />
@@ -143,6 +206,18 @@ function CreateContainer({
             )
           })
         }
+      </div>
+
+      <div style={{
+        textAlign: "right"
+      }}>
+        <button
+          type="submit"
+          onClick={uploadForm}
+          className="submit-button"
+        >
+          업로드
+        </button>
       </div>
     </section>
   )

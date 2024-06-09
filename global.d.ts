@@ -9,7 +9,6 @@ declare global {
     };
 
     interface VoteFormType {
-      id: number,
       public: boolean,
       isShortForm: boolean,
       category: string[],
@@ -30,14 +29,15 @@ declare global {
       hasOtherChoice: boolean,
       otherChoiceType?: "string" | "number" | "any",
       choices?: ContentType[],
-      maxChoice?: number,
-      minChoice?: number,
+      maxChoices?: number,
+      minChoices?: number,
       hasParentQuestion: boolean,
       parentQuestion?: number,
       required: boolean,
     }
     
     interface ContentType {
+      id?: string,
       type: "img" | "txt",
       data: string,
       caption?: string

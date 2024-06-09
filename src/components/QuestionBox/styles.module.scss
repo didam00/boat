@@ -21,7 +21,7 @@
   }
   
   &.editable {
-    min-height: 240px;
+    min-height: 260px;
   }
   
   &:hover {
@@ -138,7 +138,7 @@
     width: 70px;
     padding: 2px;
 
-    border: 2px solid #E0E0E0;
+    border: 2px solid $OPTION_GRAY_COLOR;
     border-radius: 2rem;
       
     transition: all 250ms;
@@ -153,7 +153,7 @@
       height: 28px;
       border-radius: 1rem;
       
-      background-color: #E0E0E0;
+      background-color: $OPTION_GRAY_COLOR;
       
       color: WHITE;
       font-weight: 700;
@@ -195,8 +195,8 @@
   // gap: 6px;
 
   .type-option-container {
-    border: 2px solid #E8E8E8;
-    color: #E0E0E0;
+    border: 2px solid $OPTION_GRAY_COLOR;
+    color: $OPTION_GRAY_COLOR;
     padding: 8px 12px;
     cursor: pointer;
     transition: none;
@@ -226,6 +226,54 @@
       color: white;
       scale: 1;
     }
+  }
+
+  &:hover {
+    scale: 1.02;
+  }
+}
+
+.count-option-form {
+  display: flex;
+  align-items: center;
+
+  padding: 0 1rem 0 0.5rem;
+  border: 2px solid $OPTION_GRAY_COLOR;
+  border-radius: 12px;
+
+  font-weight: 600;
+  color: $OPTION_GRAY_COLOR;
+  
+  .min-choices, .max-choices {
+    input {
+      font-family: Pretendard;
+      font-weight: 600;
+      font-size: 1rem;
+      color: $OPTION_GRAY_COLOR;
+      
+      width: 1.5rem;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+
+      &:hover {
+        scale: normal;
+        color: $SUB_COLOR;
+      }
+    }
+  }
+
+  .min-choices input {
+    padding-right: 0.25rem;
+    text-align: right;
+  }
+
+  .max-choices input {
+    padding-left: 0.25rem;
+    text-indent: left;
   }
 
   &:hover {

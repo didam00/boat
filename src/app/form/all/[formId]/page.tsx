@@ -3,7 +3,6 @@ import styles from "./page.module.scss";
 import FormPageSideBox from "@/components/FormPageSideBox";
 
 const voteFormData: VoteFormType = {
-  id: 1,
   public: true,
   isShortForm: false,
   category: ["프로그래밍"],

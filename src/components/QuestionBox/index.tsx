@@ -7,6 +7,7 @@ import MultiChoiceAnswerBox from "@/components/AnswerBox/MultiChoiceAnswerBox";
 import ShortAnswerBox from "@/components/AnswerBox/ShortAnswerBox";
 import MultiShortAnswerBox from "@/components/AnswerBox/MultiShortAnswerBox/index.client";
 import React, { useState } from "react";
+import SmallInputBox from "../SmallInputBox";
 
 export default function QuestionBox({
   question,
@@ -48,6 +49,35 @@ export default function QuestionBox({
           }}
         >문항 삭제</button>
         <div style={{flex: "1 0 0"}}></div>
+        {
+        question.type == "multi-choice" || question.type == "multi-short" ?
+        <form className={styles["count-option-form"]}>
+          <label className={styles["min-choices"]}>
+            <input
+              type="number" name="min-choices" className={`clean`} defaultValue={0}
+              onChange={(event: React.FocusEvent<HTMLInputElement>) => {
+                updateQuestion(index, {...question, minChoices: Number(event.target.value)})
+              }}
+              pattern="\d*[1-9]\d*"
+              value={question.minChoices ? question.minChoices : 0}
+            />
+          </label>
+          ~
+          <label className={styles["max-choices"]}>
+            <input
+              type="number" name="max-choices" className={`clean`} defaultValue={0}
+              onChange={(event: React.FocusEvent<HTMLInputElement>) => {
+                updateQuestion(index, {...question, maxChoices: Number(event.target.value)})
+              }}
+              pattern="\d*[1-9]\d*"
+              value={question.maxChoices ? question.maxChoices : 0}
+            />
+          </label>
+          개 선택
+        </form>
+        :
+        null
+        }
         <form className={styles["required-option-form"]}>
           <input 
             id={`required-option-${question.id}`}
@@ -97,15 +127,70 @@ export default function QuestionBox({
   });
 
   if (question.type === "choice" && question.choices) {
-    answerBox = <ChoiceAnswerBox choices={question.choices} index={index} editable updateQuestion={updateQuestion} question={question}/>
+    answerBox = <ChoiceAnswerBox choices={question.choices} index={index} editable={editable} updateQuestion={updateQuestion} question={question} />
   } else if (question.type === "multi-choice" && question.choices) {
-    answerBox = <MultiChoiceAnswerBox choices={question.choices} index={index} editable />
+    answerBox = <MultiChoiceAnswerBox choices={question.choices} index={index} editable={editable} updateQuestion={updateQuestion} question={question} />
   } else if (question.type === "short") {
     answerBox = <ShortAnswerBox index={index} />
   } else if (question.type === "multi-short") {
     answerBox = <MultiShortAnswerBox index={index} />
   } else if (question.type === "essay") {
     answerBox = <EssayAnswerBox index={index} />
+  }
+
+  let choicesCountComponent;
+
+  if ((question.type === "multi-choice") && question.choices && (question.maxChoices || question.minChoices)) {
+    let innerText = "";
+    let minValid = false, maxValid = false;
+    
+    if (question.minChoices && (question.minChoices > 0) && question.minChoices < question.choices.length) {
+      if (!question.maxChoices || question.minChoices < question.maxChoices) {
+        minValid = true;
+        innerText += `최소 ${question.minChoices}개 선택 `
+      }
+    }
+
+    if (question.maxChoices && (question.maxChoices < question.choices.length)) {
+      if (!question.minChoices || question.minChoices < question.maxChoices) {
+        maxValid = true;
+        innerText += `최대 ${question.maxChoices}개 선택`
+      }
+    }
+
+    if (minValid && maxValid) innerText = innerText.replace("최대", "그리고 최대");
+
+    if (question.minChoices && question.minChoices && question.minChoices === question.maxChoices && question.maxChoices < question.choices.length) {
+      innerText += `${question.maxChoices}개만 선택`
+    }
+
+    if (innerText !== "") {
+      choicesCountComponent = <span><img src="/svgs/asterisk.svg" />{innerText}</span>
+    }
+  }
+
+  if (question.type === "multi-short") {
+    let innerText = "";
+    
+    if (question.minChoices && (question.minChoices > 0) && question.maxChoices) {
+      if (!question.maxChoices || question.minChoices < question.maxChoices) {
+        innerText += `최소 ${question.minChoices}개 선택 `
+      }
+    }
+
+    if (question.maxChoices) {
+      if (!question.minChoices || question.minChoices < question.maxChoices) {
+        innerText += `최대 ${question.maxChoices}개 선택`
+      }
+    }
+
+    if (question.minChoices && question.minChoices && question.minChoices === question.maxChoices) {
+      innerText += `${question.maxChoices}개만 선택`
+    }
+
+    if (innerText !== "") {
+      choicesCountComponent = <span><img src="/svgs/asterisk.svg" />{innerText}</span>
+    }
   }
 
   return (
@@ -115,7 +200,8 @@ export default function QuestionBox({
       key={index}
     >
       <div className={styles["prefix-box"]}>
-        {question.required ? <span><img src="/svgs/asterisk.svg"></img>필수 항목입니다.</span> : ""}
+        {question.required ? <span><img src="/svgs/asterisk.svg" />필수 항목입니다.</span> : ""}
+        {choicesCountComponent}
       </div>
       {titleNode}
       {descBox}

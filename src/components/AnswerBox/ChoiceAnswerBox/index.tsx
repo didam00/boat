@@ -1,4 +1,5 @@
 import styles from "./styles.module.scss";
+import { v4 as v4uuid } from "uuid";
 
 export default function ChoiceAnswerBox({
   choices,
@@ -14,28 +15,42 @@ export default function ChoiceAnswerBox({
   updateQuestion?: (index: number, updatedQuestion?: Question) => void;
 }) {
   const choicesMapping: JSX.Element[] = choices.map((choice, i) => 
-    <div className={`radio-container ${editable ? styles["editable"] : ""}`} key={`choice-${index}-${i}`}>
+    <div className={`radio-container ${editable ? styles["editable"] : ""}`} key={choice.id}>
       <input type="radio" name={"choices-"+(index)} id={`choice-${index}-${i}`} />
       <label htmlFor={`choice-${index}-${i}`}>
         {
-          editable?
-            <input
-              type="text"
-              className={`clean ${styles["choices"]}`}
-              placeholder="선택지 항목을 입력하세요"
-              onBlur={(event: React.FocusEvent<HTMLInputElement>) => {
-                if (updateQuestion && question && choices) {
-                  let newChoices = [...choices];
-                  newChoices.splice(i, 1, {
-                    type: "txt",
-                    data: event.target.value
-                  });
-                  console.log(newChoices);
-                  updateQuestion(index, {...question, choices: newChoices})
-                }
-              }}
-              defaultValue={choice.data}
-            />
+          editable ?
+            <div className={styles["editable-choice-box"]}>
+              <input
+                type="text"
+                className={`clean ${styles["choices"]}`}
+                placeholder="선택지 항목을 입력하세요"
+                onBlur={(event: React.FocusEvent<HTMLInputElement>) => {
+                  if (updateQuestion && question && choices) {
+                    let newChoices = [...choices];
+                    newChoices.splice(i, 1, {
+                      id: v4uuid(),
+                      type: "txt",
+                      data: event.target.value
+                    });
+                    console.log(newChoices);
+                    updateQuestion(index, {...question, choices: newChoices})
+                  }
+                }}
+                defaultValue={choice.data}
+              />
+              <div style={{flex: "1 0 0"}}></div>
+              <button
+                onClick={(event) => {
+                  event.preventDefault();
+
+                  if (updateQuestion && question && choices) {
+                    updateQuestion(index, {...question, choices: choices.toSpliced(i, 1)})
+                  }
+                }}
+                className={`clean ${styles["close-icon"]}`}
+              ><span className={`material-symbols-outlined`}>close</span></button>
+            </div>
           :
             <span>{choice.data}</span>
         }
@@ -48,7 +63,7 @@ export default function ChoiceAnswerBox({
       {choicesMapping}
       {
         editable?
-          <button
+          <button className={styles["add-choice"]}
             onClick={(event) => {
               event.preventDefault();
 
@@ -58,7 +73,7 @@ export default function ChoiceAnswerBox({
                 });
               }
             }}
-          >선택지 추가</button>
+          >+ 선택지 추가</button>
         :
           null
       }
