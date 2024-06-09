@@ -17,7 +17,7 @@ export default function RegisterPage() {
       const res = await axios.post("/api/user/register", data);
       router.back();
     } catch {
-      console.log("Register Failed");
+      
     }
   }
 

@@ -7,7 +7,7 @@ connect();
 export async function GET(req: NextRequest) {
   const voteId = req.url.split("/").at(-1);
 
-  const form = await Forms.findOne({ _id: voteId });
+  const form = await Forms.findOne({ _id: voteId }).populate("questions");
 
   if (!form) {
     return NextResponse.json({

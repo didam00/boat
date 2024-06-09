@@ -38,9 +38,9 @@ function LoginForm() {
     try {
       const res = await axios.post("/api/user/login", data);
       router.back();
-      console.log("Login Successfully: @" + res.data.user.username);
+      
     } catch {
-      console.log("Login Failed");
+      
     } finally {
       setLoading(false);
     }

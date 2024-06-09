@@ -22,7 +22,7 @@ declare global {
     type QuestionType = "short" | "multi-short" | "essay" | "choice" | "multi-choice";
 
     interface Question {
-      id: number,
+      _id?: string,
       type: QuestionType,
       title: string,
       content: ContentType[],

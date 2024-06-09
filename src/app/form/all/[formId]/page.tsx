@@ -3,9 +3,9 @@
 import QuestionBox from "@/components/QuestionBox";
 import styles from "./page.module.scss";
 import FormPageSideBox from "@/components/FormPageSideBox";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { GetServerSideProps } from "next";
+import { useRouter } from "next/navigation";
 
 export default function VotePage({
   params
@@ -15,6 +15,37 @@ export default function VotePage({
   }
 }) {
   const [voteFormData, setVoteFormData] = useState<VoteFormType>();
+  const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const form = formRef.current as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const userId = (await axios.get("/api/user/me")).data.data._id;
+    const responds: {
+      questionId: string,
+      type: string,
+      content: string,
+    }[] = []
+    
+    for (let e of formData.entries()) {
+      responds.push({
+        type: "txt",
+        questionId: e[0],
+        content: String(e[1])
+      })
+    }
+
+    const res = await axios.post("/api/form/respond", {
+      responds: responds,
+      userId: userId
+    })
+
+    router.push("/");
+  }
 
   useEffect(() => {
     const getVoteFormData = async () => {
@@ -26,10 +57,8 @@ export default function VotePage({
   }, [params.formId])
 
   if (!voteFormData) {
-    return <div>Loading...</div>
+    return <></>
   }
-
-  console.log(voteFormData);
 
   return (
     <main>
@@ -37,9 +66,17 @@ export default function VotePage({
         <article className={styles["vote-main"]}>
           <h2>Q. {voteFormData?.title}</h2>
           <span className={styles["category-list"]}>{voteFormData.category.join(" ")}</span>
-          {voteFormData?.questions.map((q, i) => (
-            <QuestionBox question={q} questionIndex={i} />
-          ))}
+          <form ref={formRef}>
+            {voteFormData?.questions.map((q, i) => (
+              <QuestionBox question={q} questionIndex={i} key={q._id}/>
+            ))}
+            <div style={{textAlign: "center"}}>
+              <button
+                className="submit-button"
+                onClick={handleSubmit}
+              >설문 완료</button>
+            </div>
+          </form>
         </article>
         <FormPageSideBox questions={voteFormData ? voteFormData.questions : []} />
       </div>

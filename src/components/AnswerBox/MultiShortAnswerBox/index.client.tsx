@@ -5,9 +5,11 @@ import styles from "./styles.module.scss";
 import SmallInputBox from "@/components/SmallInputBox";
 
 export default function MultiShortAnswerBox({
-  index
+  index,
+  question
 }: {
   index: number
+  question: Question
 }) {
   const [answers, setAnswers] = useState<string[]>([]);
 
@@ -33,7 +35,7 @@ export default function MultiShortAnswerBox({
     >
       <SmallInputBox
         type="text"
-        name={`short-${index}`}
+        name={`${question._id}`}
         placeholder="'Enter' 키로 단어를 하세요!"
         required
         onkeydown={handleKeyDown}

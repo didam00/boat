@@ -19,6 +19,8 @@ export default function CreateFormPage() {
   const [formTitle, setFormTitle] = useState<string>("");
 
   const uploadForm = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const newQuestions = questions.map(({ _id, ...question}) => question);
+
     const newForm: VoteFormType = {
       isPublic: isPublic,
       isShortForm: isShort,
@@ -27,7 +29,7 @@ export default function CreateFormPage() {
       views: 0,
       title: formTitle,
       author: ((await axios.get("/api/user/me")).data.data._id),
-      questions: questions,
+      questions: newQuestions,
     }
 
     const res = await axios.post("/api/form/upload", newForm);
@@ -78,7 +80,7 @@ function CreateContainer({
 
   const addQuestion = function (event: React.MouseEvent<HTMLButtonElement>, index: number) {
     let newQuestion: Question = {
-      id: new Date().getTime(),
+      _id: new Date().getTime().toString(36),
       type: defaultQuestionType,
       title: "",
       content: [],
@@ -109,8 +111,6 @@ function CreateContainer({
     newQuestions.splice(index, 0, newQuestion)
 
     setQuestions(newQuestions);
-
-    console.log(questions);
   }
 
   const updateQuestion = function (index: number, updatedQuestion?: Question) {
@@ -207,7 +207,7 @@ function CreateContainer({
         {
           questions.map((question, i) => {
             return (
-              <div className={styles["question-manager"]} key={question.id}>
+              <div className={styles["question-manager"]} key={question._id}>
                 <QuestionBox
                   questionIndex={i}
                   question={question}

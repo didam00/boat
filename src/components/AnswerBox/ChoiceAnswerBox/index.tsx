@@ -16,7 +16,7 @@ export default function ChoiceAnswerBox({
 }) {
   const choicesMapping: JSX.Element[] = choices.map((choice, i) => 
     <div className={`radio-container ${editable ? styles["editable"] : ""}`} key={choice.id}>
-      <input type="radio" name={"choices-"+(index)} id={`choice-${index}-${i}`} />
+      <input type="radio" name={`${question?._id}`} id={`choice-${index}-${i}`} value={choice.data} />
       <label htmlFor={`choice-${index}-${i}`}>
         {
           editable ?

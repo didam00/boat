@@ -16,7 +16,7 @@ export default function MultiChoiceAnswerBox({
 }) {
   const choicesMapping: JSX.Element[] = choices.map((choice, i) => 
     <div className={`checkbox-container ${editable ? styles["editable"] : ""}`} key={choice.id}>
-      <input type="checkbox" name={"choices-"+(index)} id={`choice-${index}-${i}`} />
+      <input type="checkbox" name={`${question?._id}`} id={`choice-${index}-${i}`} value={choice.data} />
       <label htmlFor={`choice-${index}-${i}`}>
         {
           editable?
@@ -33,7 +33,7 @@ export default function MultiChoiceAnswerBox({
                       type: "txt",
                       data: event.target.value
                     });
-                    console.log(newChoices);
+                    
                     updateQuestion(index, {...question, choices: newChoices})
                   }
                 }}

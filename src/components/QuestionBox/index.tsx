@@ -51,7 +51,7 @@ export default function QuestionBox({
         <div style={{flex: "1 0 0"}}></div>
         {
         question.type == "multi-choice" || question.type == "multi-short" ?
-        <form className={styles["count-option-form"]}>
+        <div className={styles["count-option-form"]}>
           <label className={styles["min-choices"]}>
             <input
               type="number" name="min-choices" className={`clean`} defaultValue={0}
@@ -74,42 +74,42 @@ export default function QuestionBox({
             />
           </label>
           개 선택
-        </form>
+        </div>
         :
         null
         }
-        <form className={styles["required-option-form"]}>
+        <div className={styles["required-option-form"]}>
           <input 
-            id={`required-option-${question.id}`}
+            id={`required-option-${question._id}`}
             type="checkbox" 
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               updateQuestion(index, {...question, required: event.target.checked})
             }}
             defaultChecked={question.required}
           />
-          <label htmlFor={`required-option-${question.id}`}>
+          <label htmlFor={`required-option-${question._id}`}>
             <div className={styles["switch-container"]}>
               <div className={styles["switch-lever"]}>
                 <span>필수</span>
               </div>
             </div>
           </label>
-        </form>
-        <form 
+        </div>
+        <div 
           className={styles["type-option-form"]}
-          onChange={(event: React.ChangeEvent<HTMLFormElement>) => {
+          onChange={(event: React.ChangeEvent<HTMLDivElement>) => {
             updateQuestion(index, {
               ...question,
               type: event.target.id.slice(0, -7) as QuestionType
             })
           }}
         >
-          <TypeOptionItem id="choice" label="선택형" checked={"choice"===question.type} />
-          <TypeOptionItem id="multi-choice" label="다중선택형" checked={"multi-choice"===question.type} />
-          <TypeOptionItem id="short" label="단답형" checked={"short"===question.type} />
-          <TypeOptionItem id="multi-short" label="다답형" checked={"multi-short"===question.type} />
-          <TypeOptionItem id="essay" label="서술형" checked={"essay"===question.type} />
-        </form>
+          <TypeOptionItem id="choice" label="선택형" checked={"choice"===question.type} qid={question._id} />
+          <TypeOptionItem id="multi-choice" label="다중선택형" checked={"multi-choice"===question.type} qid={question._id} />
+          <TypeOptionItem id="short" label="단답형" checked={"short"===question.type} qid={question._id} />
+          <TypeOptionItem id="multi-short" label="다답형" checked={"multi-short"===question.type} qid={question._id} />
+          <TypeOptionItem id="essay" label="서술형" checked={"essay"===question.type} qid={question._id} />
+        </div>
       </div>
     )
   } else {
@@ -131,11 +131,11 @@ export default function QuestionBox({
   } else if (question.type === "multi-choice" && question.choices) {
     answerBox = <MultiChoiceAnswerBox choices={question.choices} index={index} editable={editable} updateQuestion={updateQuestion} question={question} />
   } else if (question.type === "short") {
-    answerBox = <ShortAnswerBox index={index} />
+    answerBox = <ShortAnswerBox index={index} question={question}/>
   } else if (question.type === "multi-short") {
-    answerBox = <MultiShortAnswerBox index={index} />
+    answerBox = <MultiShortAnswerBox index={index} question={question}/>
   } else if (question.type === "essay") {
-    answerBox = <EssayAnswerBox index={index} />
+    answerBox = <EssayAnswerBox index={index} question={question}/>
   }
 
   let choicesCountComponent;
@@ -205,9 +205,9 @@ export default function QuestionBox({
       </div>
       {titleNode}
       {descBox}
-      <form>
+      <div>
         {answerBox}
-      </form>
+      </div>
       <div style={{flex: "1 0 0"}}></div>
       {optionNode}
     </section>
@@ -217,17 +217,19 @@ export default function QuestionBox({
 function TypeOptionItem({
   id,
   label,
-  checked = false
+  checked = false,
+  qid
 }: {
   id: string,
   label: string,
-  checked?: boolean
+  qid: string,
+  checked?: boolean,
 }) {
   return (
     <label 
       className={styles["type-option-container"]}
     >
-      <input type="radio" name="type-options" id={id+"-option"} defaultChecked={checked} />
+      <input type="radio" name={"type-options-"+qid} id={id+"-option"} defaultChecked={checked} />
       {label}
     </label>
   )
