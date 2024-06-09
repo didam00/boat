@@ -2,8 +2,9 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 
 export default function FormRow({
-  title, category, votes, isShort
+  id, title, category, votes, isShort
 }: {
+  id: string,
   title: string,
   category: string,
   votes: number,
@@ -13,7 +14,7 @@ export default function FormRow({
     <tr className={`${styles["row"]} ${isShort ? styles["short-form"] : ""}`}>
       <td className={styles["title-value"]}>
         <span>
-          <Link href="/form/all/1">{title}</Link>
+          <Link href={`/form/all/${id}`}>{title}</Link>
         </span>
       </td>
       <td className={styles["category-value"]}><span>{category}</span></td>

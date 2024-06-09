@@ -1,3 +1,5 @@
+"use client"
+
 import { GetServerSideProps } from "next";
 import styles from "./page.module.scss";
 import Filter from "@/components/Filter";
@@ -55,6 +57,7 @@ export default function AllFormsList() {
                   {forms.map((form) => (
                     <FormRow
                       key={form._id}
+                      id={form._id}
                       title={form.title}
                       category={form.category[0]}
                       votes={form.votes}
