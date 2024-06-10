@@ -8,6 +8,7 @@ import FormPageSideBox from "@/components/FormPageSideBox";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { title } from "process";
 
 export default function CreateFormPage() {
   const router = useRouter();
@@ -19,6 +20,11 @@ export default function CreateFormPage() {
   const [formTitle, setFormTitle] = useState<string>("");
 
   const uploadForm = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    // valid 체크
+    if (!formTitle.trim() || questions.length <= 0) {
+      return;
+    }
+
     const newQuestions = questions.map(({ _id, ...question}) => question);
 
     const newForm: VoteFormType = {
@@ -135,6 +141,7 @@ function CreateContainer({
         onBlur={(event: React.FocusEvent<HTMLInputElement>) => {
           setFormTitle(event.target.value)
         }}
+        required={true}
       />
 
       <div className={`${styles["form-option"]}`}>

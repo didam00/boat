@@ -104,11 +104,11 @@ export default function QuestionBox({
             })
           }}
         >
-          <TypeOptionItem id="choice" label="선택형" checked={"choice"===question.type} qid={question._id} />
-          <TypeOptionItem id="multi-choice" label="다중선택형" checked={"multi-choice"===question.type} qid={question._id} />
-          <TypeOptionItem id="short" label="단답형" checked={"short"===question.type} qid={question._id} />
-          <TypeOptionItem id="multi-short" label="다답형" checked={"multi-short"===question.type} qid={question._id} />
-          <TypeOptionItem id="essay" label="서술형" checked={"essay"===question.type} qid={question._id} />
+          <TypeOptionItem id="choice" label="선택형" checked={"choice"===question.type} qid={question._id!} />
+          <TypeOptionItem id="multi-choice" label="다중선택형" checked={"multi-choice"===question.type} qid={question._id!} />
+          <TypeOptionItem id="short" label="단답형" checked={"short"===question.type} qid={question._id!} />
+          <TypeOptionItem id="multi-short" label="다답형" checked={"multi-short"===question.type} qid={question._id!} />
+          <TypeOptionItem id="essay" label="서술형" checked={"essay"===question.type} qid={question._id!} />
         </div>
       </div>
     )
