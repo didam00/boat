@@ -18,7 +18,7 @@ const questionSchema = new Schema({
   hasParentQuestion:{type: Boolean, required: true},
   parentQuestion:   {type: Schema.Types.ObjectId},
   required:         {type: Boolean, required: true},
-  responds:         [respondSchema]
+  responds:         {type: [respondSchema]}
 })
 
 export default models.questions || model("questions", questionSchema);

@@ -1,14 +1,14 @@
 import { Schema, model, models } from "mongoose";
 
 const formsSchema = new Schema({
-  isPublic: Boolean,
-  isShortForm: Boolean,
-  category: [String],
-  votes: Number,
-  views: Number,
-  title: String,
-  author: String,
-  questions: {type: [Schema.Types.ObjectId], ref: 'questions'}
+  isPublic:     {type: Boolean},
+  isShortForm:  {type: Boolean},
+  category:     {type: [String]},
+  votes:        {type: Number},
+  views:        {type: Number},
+  title:        {type: String},
+  author:       {type: String},
+  questions:    {type: [Schema.Types.ObjectId], ref: 'questions'}
 }, {
   timestamps: true
 });

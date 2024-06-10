@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
           ...question,
           responds: []
         });
+
         questionList.push(newQuestion._id);
         await newQuestion.save();
       }

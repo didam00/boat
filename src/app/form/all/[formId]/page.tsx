@@ -40,6 +40,7 @@ export default function VotePage({
     }
 
     const res = await axios.post("/api/form/respond", {
+      formId: voteFormData?._id ?? "",
       responds: responds,
       userId: userId
     })

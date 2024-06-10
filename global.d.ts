@@ -9,6 +9,7 @@ declare global {
     };
 
     interface VoteFormType {
+      _id?: string,
       isPublic: boolean,
       isShortForm: boolean,
       category: string[],
