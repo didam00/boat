@@ -29,7 +29,7 @@ export default function RegisterPage() {
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="username" className={styles.formLabel}>아이디</label>
-        <input id="username" name="username" type="text" className={styles.formInput} />
+        <input id="username" pattern="^[a-z]+[a-z0-9_]{5,19}$" name="username" type="text" className={styles.formInput} />
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="nickname" className={styles.formLabel}>별명</label>
@@ -37,15 +37,19 @@ export default function RegisterPage() {
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="password" className={styles.formLabel}>비밀번호</label>
-        <input id="password" name="password" type="password" className={styles.formInput} />
+        <input id="password" pattern="^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z$`~!@$!%*#^?&-_=]{8,32}$" name="password" type="password" className={styles.formInput} />
       </div>
       <div className={styles.formGroup}>
-        <label htmlFor="name" className={styles.formLabel}>비밀번호 확인</label>
-        <input id="name" name="name" type="password" className={styles.formInput} />
+        <label htmlFor="password" className={styles.formLabel}>비밀번호 확인</label>
+        <input id="password" pattern="^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z$`~!@$!%*#^?&-_=]{8,32}$" name="passwordCheck" type="password" className={styles.formInput} />
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="name" className={styles.formLabel}>이름</label>
+        <input id="name" name="name" type="text" className={styles.formInput} />
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="phoneNumber" className={styles.formLabel}>전화번호</label>
-        <input id="phoneNumber" name="phoneNumber" type="text" className={styles.formInput} />
+        <input id="phoneNumber" name="phoneNumber" type="tel" className={styles.formInput} />
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="country" className={styles.formLabel}>국가</label>

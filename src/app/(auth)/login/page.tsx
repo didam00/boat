@@ -58,7 +58,7 @@ function LoginForm() {
         name="username"
         placeholder="아이디를 입력해주세요"
         required={true}
-        pattern="[A-Za-z0-9_!]+"
+        pattern="^[a-z]+[a-z0-9_]{5,19}$"
         autocomplete="on"
       />
       <SmallInputBox
@@ -66,7 +66,7 @@ function LoginForm() {
         name="password"
         placeholder="비밀번호를 입력해주세요"
         required={true}
-        pattern="[A-Za-z0-9_!]+"
+        pattern="^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z$`~!@$!%*#^?&-_=]{8,32}$"
       />
       <button type="submit" className={`submit-button`}>
         <span className={styles["text"]}>
