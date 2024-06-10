@@ -19,7 +19,7 @@ export default function ProfilePage() {
     }
   
     getUser();
-  })
+  }, [])
 
   if (!user) {
     return <></>;
