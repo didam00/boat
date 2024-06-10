@@ -36,7 +36,7 @@ export default function MultiShortAnswerBox({
       <SmallInputBox
         type="text"
         name={`${question._id}`}
-        placeholder="'Enter' 키로 단어를 하세요!"
+        placeholder="'Enter' 키로 단어를 추가하세요!"
         required
         onkeydown={handleKeyDown}
       />

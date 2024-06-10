@@ -50,9 +50,9 @@ export default function AllFormsList() {
               <table className={styles["forms-table"]}>
                 <tbody>
                   <tr className={styles["table-header"]}>
-                    <th>제목</th>
-                    <th>카테고리</th>
-                    <th>참여수</th>
+                    <th style={{width: "50%"}}>제목</th>
+                    <th style={{width: "25%"}}>카테고리</th>
+                    <th style={{width: "25%"}}>참여수</th>
                   </tr>
                   {forms.map((form) => (
                     <FormRow

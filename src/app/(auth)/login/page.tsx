@@ -18,6 +18,8 @@ export default function LoginPage() {
           <Logo />
           <LoginForm />
           <ForgotPassword />
+          <div style={{height: "4px"}}></div>
+          <EnterRegisterPage />
         </section>
       </div>
     </main>
@@ -56,7 +58,7 @@ function LoginForm() {
         name="username"
         placeholder="아이디를 입력해주세요"
         required={true}
-        pattern="[A-Za-z0-9_]+"
+        pattern="[A-Za-z0-9_!]+"
         autocomplete="on"
       />
       <SmallInputBox
@@ -64,7 +66,7 @@ function LoginForm() {
         name="password"
         placeholder="비밀번호를 입력해주세요"
         required={true}
-        pattern="[A-Za-z0-9_]+"
+        pattern="[A-Za-z0-9_!]+"
       />
       <button type="submit" className={`submit-button`}>
         <span className={styles["text"]}>
@@ -84,10 +86,27 @@ function Logo() {
 }
 
 function ForgotPassword() {
+  const router = useRouter();
+
   return (
-    <div className={styles["forgot-password-container"]}>
-      <Link href="/">
-        혹시 비밀번호를 잃어버리셨나요?
+    <div className={styles["forgot-password-container"]}
+      onClick={() => {
+        alert("새로 만드세요~!ㅋ");
+        router.push("/register");
+      }}
+    >
+      {/* <Link href="/"> */}
+        비밀번호를 잃어버리셨나요?
+      {/* </Link> */}
+    </div>
+  )
+}
+
+function EnterRegisterPage() {
+  return (
+    <div className={styles["enter-register-container"]}>
+      <Link href="/register">
+        아직 계정이 없으신가요? 회원가입 하러가기
       </Link>
     </div>
   )
