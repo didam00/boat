@@ -1,0 +1,32 @@
+@import "@/styles/variables";
+
+.profile-box {
+  font-size: 1rem;
+
+  h2 {
+    display: block;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .row {
+    display: flex;
+    margin-bottom: 0.75rem;
+
+    span {
+      &:first-child {
+        font-weight: 700;
+        color: $DARK_GRAY_COLOR;
+        width: 8rem;
+      }
+      &:last-child {
+        font-weight: 500;
+        color: $GRAY_COLOR;
+      }
+    }
+  }
+
+  &:hover {
+    scale: 1.005;
+  }
+}

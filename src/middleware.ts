@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
-  const onlyVerified = ["/form/create"];
+  const onlyVerified = ["/form/create", "/form/all/:path*", "/my-page"];
   const onlyNonVerified = ["/login", "/register"];
   const token = req.cookies.get('token')?.value || "";
 
@@ -22,7 +22,9 @@ export function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     "/form/create",
+    "/my-page",
     "/login",
     "/register",
+    "/form/all/:path*"
   ]
 };
