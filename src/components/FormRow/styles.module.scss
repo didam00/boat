@@ -6,6 +6,12 @@
   .title-value {
     width: 50%;
     text-align: left;
+    
+    a {
+      &:link, &:visited, &:focus, &:hover, &:active {
+        color: black;
+      }
+    }
   }
   
   .category-value {
@@ -16,6 +22,12 @@
   .votes-value {
     width: 25%;
     text-align: right;
+
+    a {
+      &:link, &:visited, &:focus, &:hover, &:active {
+        color: $SUB_COLOR;
+      }
+    }
   }
 
   &.short-form {
@@ -30,12 +42,6 @@
       border-radius: 0.75rem + 0.25rem * 2;
 
       background: $WHITE_MAIN_COLOR;
-    }
-  }
-
-  a {
-    &:link, &:visited, &:focus, &:hover, &:active {
-      color: black;
     }
   }
 }

@@ -208,7 +208,9 @@ function CreateContainer({
         </div>
       </div>
 
-      <AddQuestionButton index={0} callback={addQuestion} />
+      {questions.length === 0
+      ? <EmptyFormAlert callback={addQuestion}/>
+      : <AddQuestionButton index={0} callback={addQuestion} />}
       
       <div className="question-blocks-container">
         {
@@ -261,4 +263,24 @@ function AddQuestionButton({
       <span>이곳에 추가하기</span>
     </button>
   )
+}
+
+function EmptyFormAlert({
+  callback
+}: {
+  callback: (event: React.MouseEvent<HTMLButtonElement>, index: number) => void;
+}) {
+
+  return (
+    <button
+      className={`${styles["empty-form-alert"]} clean`}
+      onClick={event => {
+        callback(event, 0);
+      }}
+    >
+      <img src="/images/empty-form.png" alt="it is empty form." />
+      <h3>아직 아무 문항이 없습니다!</h3>
+      <span>이 이미지를 눌러 새로운 문항을 추가하세요.</span>
+    </button>
+  );
 }

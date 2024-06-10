@@ -18,7 +18,11 @@ export default function FormRow({
         </span>
       </td>
       <td className={styles["category-value"]}><span>{category}</span></td>
-      <td className={styles["votes-value"]}><span>{votes}명 참여</span></td>
+      <td className={styles["votes-value"]}>
+        <span>
+          <Link href={`/form/all/${id}/result`}>{votes}명 참여</Link>
+        </span>
+      </td>
     </tr>
   )
 }

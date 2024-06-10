@@ -117,3 +117,38 @@
     }
   }
 }
+
+.empty-form-alert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  color: #e8e8e8;
+
+  width: 100%;
+  height: 400px;
+
+  cursor: pointer;
+
+  * {
+    line-height: normal;
+  }
+
+  img {
+    height: 120px;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    margin-top: 1rem;
+    font-weight: 800;
+  }
+  
+  span {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
