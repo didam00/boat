@@ -1,3 +1,7 @@
+import "../models/Questions";
+import "../models/Forms";
+import "../models/Users";
+
 import Header from "@/components/Header";
 import "@/styles/_globals.scss";
 

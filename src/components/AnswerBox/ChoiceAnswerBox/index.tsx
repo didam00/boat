@@ -33,7 +33,6 @@ export default function ChoiceAnswerBox({
                       type: "txt",
                       data: event.target.value
                     });
-                    console.log(newChoices);
                     updateQuestion(index, {...question, choices: newChoices})
                   }
                 }}
