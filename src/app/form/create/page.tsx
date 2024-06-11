@@ -16,6 +16,7 @@ export default function CreateFormPage() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [isPublic, setIsPublic] = useState(true);
   const [isShort, setIsShort] = useState(false);
+  const [isAllowAll, setIsAllowAll] = useState(false);
   const [category, setCategory] = useState<string[]>([]);
   const [formTitle, setFormTitle] = useState<string>("");
 
@@ -30,6 +31,7 @@ export default function CreateFormPage() {
     const newForm: VoteFormType = {
       isPublic: isPublic,
       isShortForm: isShort,
+      isAllowAll: isAllowAll,
       category: category,
       votes: 0,
       views: 0,
@@ -56,6 +58,7 @@ export default function CreateFormPage() {
           uploadForm={uploadForm}
           setIsPublic={setIsPublic}
           setIsShort={setIsShort}
+          setIsAllowAll={setIsAllowAll}
           setFormTitle={setFormTitle}
           setCategory={setCategory}
         />
@@ -71,6 +74,7 @@ function CreateContainer({
   uploadForm,
   setIsPublic,
   setIsShort,
+  setIsAllowAll,
   setFormTitle,
   setCategory,
 }: {
@@ -79,6 +83,7 @@ function CreateContainer({
   uploadForm: (event: React.MouseEvent<HTMLButtonElement>) => void;
   setIsPublic: Dispatch<SetStateAction<boolean>>;
   setIsShort: Dispatch<SetStateAction<boolean>>;
+  setIsAllowAll: Dispatch<SetStateAction<boolean>>;
   setFormTitle: Dispatch<SetStateAction<string>>;
   setCategory: Dispatch<SetStateAction<string[]>>;
 }) {
@@ -162,6 +167,14 @@ function CreateContainer({
               }}
             />
             <label htmlFor="short-form-option">쇼트 폼</label>
+          </div>
+          <div className="checkbox-container">
+            <input type="checkbox" name="form-options" id="allow-all-form-option"
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setIsAllowAll(event.target.checked)
+              }}
+            />
+            <label htmlFor="allow-all-form-option">비회원도 답변 허용</label>
           </div>
         </div>
         <div

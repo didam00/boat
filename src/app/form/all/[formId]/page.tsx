@@ -6,6 +6,8 @@ import FormPageSideBox from "@/components/FormPageSideBox";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { NextPageContext } from "next";
+import { parseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 export default function VotePage({
   params
@@ -23,8 +25,13 @@ export default function VotePage({
 
     const form = formRef.current as HTMLFormElement;
     const formData = new FormData(form);
+    let userId;
 
-    const userId = (await axios.get("/api/user/me")).data.data._id;
+    if (voteFormData?.isAllowAll) {
+      userId = null;
+    } else {
+      userId = (await axios.get("/api/user/me")).data.data._id;
+    }
     const responds: {
       questionId: string,
       type: string,
@@ -45,7 +52,7 @@ export default function VotePage({
       userId: userId
     })
 
-    router.push("/");
+    router.push("/form/all");
   }
 
   useEffect(() => {

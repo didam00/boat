@@ -1,13 +1,13 @@
 import { Schema, model, models } from "mongoose";
 
 export interface RespondSchema {
-  userId: string,
+  userId?: string,
   type: string,
   content: string,
 }
 
 const respondSchema = new Schema({
-  userId: {type: Schema.Types.ObjectId, ref: 'users'},
+  userId: {type: Schema.Types.ObjectId, ref: 'users', required: false},
   type: String,
   content: String
 })
