@@ -63,7 +63,7 @@ export default function ResultPage({
   
       return (
       <div className={`box-container ${styles["graph-box"]}`}>
-        <h3>{question.title}</h3>
+        <h3>{i+1}. {question.title}</h3>
         <div className={styles["graph-container"]}>
           <div className={styles["bars-container"]}>
             {bars}

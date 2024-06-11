@@ -13,6 +13,7 @@ export function middleware(req: NextRequest) {
   }
   
   if (onlyVerified.includes(path) && !token) {
+    console.log("해당 페이지에 접근 권한이 없습니다.")
     return NextResponse.redirect(
       new URL('/login', req.nextUrl)
     );
