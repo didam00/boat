@@ -5,7 +5,7 @@ import styles from "./page.module.scss";
 import FormPageSideBox from "@/components/FormPageSideBox";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { NextPageContext } from "next";
 import { parseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
@@ -18,16 +18,20 @@ export default function VotePage({
 }) {
   const [voteFormData, setVoteFormData] = useState<VoteFormType>();
   const formRef = useRef<HTMLFormElement>(null);
-  const router = useRouter();
+  const router = useRouter()
+  const [tokenCheck, setTokenCheck] = useState(false);
+  const [isUser, setIsUser] = useState(true);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    console.log(voteFormData?.isAllowAll);
 
     const form = formRef.current as HTMLFormElement;
     const formData = new FormData(form);
     let userId;
 
-    if (voteFormData?.isAllowAll) {
+    if ((voteFormData?.isAllowAll ?? false) && !isUser) {
       userId = null;
     } else {
       userId = (await axios.get("/api/user/me")).data.data._id;
@@ -62,7 +66,28 @@ export default function VotePage({
     }
 
     getVoteFormData();
+    
   }, [params.formId])
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const res = await axios.get("/api/user/me");
+      } catch (error: any) {
+        setIsUser(false);
+        if (voteFormData && !voteFormData.isAllowAll) {
+          router.push("/login");
+          alert("회원만 접근할 수 있습니다.");
+        }
+      }
+    }
+
+    if (voteFormData && !tokenCheck) {
+      checkToken();
+      setTokenCheck(true);
+      console.log(voteFormData?.isAllowAll);
+    }
+  }, [voteFormData])
 
   if (!voteFormData) {
     return <></>

@@ -4,6 +4,7 @@ import { QuestionSchema } from "./Questions";
 export interface VoteFormSchema {
   isPublic: boolean,    
   isShortForm: boolean,
+  isAllowAll: boolean,
   category: string[],
   votes: number,
   views: number,
@@ -15,6 +16,7 @@ export interface VoteFormSchema {
 const formsSchema = new Schema({
   isPublic:     {type: Boolean},
   isShortForm:  {type: Boolean},
+  isAllowAll:   {type: Boolean},
   category:     {type: [String]},
   votes:        {type: Number},
   views:        {type: Number},

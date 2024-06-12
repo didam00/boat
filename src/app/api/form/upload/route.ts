@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
     const {
       isPublic,
       isShortForm,
+      isAllowAll,
       category,
       votes,
       views,
@@ -21,6 +22,7 @@ export async function POST(req: NextRequest) {
     }: {
       isPublic: boolean,
       isShortForm: boolean,
+      isAllowAll: boolean,
       category: string[],
       votes: number,
       views: number,
@@ -48,6 +50,7 @@ export async function POST(req: NextRequest) {
     const newForm = new Forms({
       isPublic,
       isShortForm,
+      isAllowAll,
       category,
       votes,
       views,
