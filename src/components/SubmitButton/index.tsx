@@ -6,7 +6,7 @@ export default function SubmitButton({
   text: string
 }) {
   return (
-    <button className={styles["submit-button"]}>
+    <button className={styles["submit-button"]} type="submit">
       <span className="text">
         {text}
       </span>

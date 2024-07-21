@@ -6,7 +6,7 @@ connect();
 
 export async function GET(req: NextRequest) {
   try {
-    const forms = await Forms.find({}).select("-questions");
+    const forms = await Forms.find({isPublic: true}).select("-questions");
     
     return NextResponse.json({
       message: "Forms Found",

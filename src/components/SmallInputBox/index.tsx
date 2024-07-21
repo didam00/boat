@@ -1,35 +1,14 @@
-import { KeyboardEventHandler } from "react";
+import React, { InputHTMLAttributes, KeyboardEventHandler } from "react";
 import styles from "./styles.module.scss";
 
-export default function SmallInputBox({
-  type,
-  name,
-  placeholder,
-  required = false,
-  pattern,
-  autocomplete = "off",
-  onkeydown
-}: {
-  type: string,
-  name: string,
-  placeholder: string,
-  required?: boolean,
-  pattern?: string,
-  autocomplete?: "on" | "off"
-  onkeydown?: KeyboardEventHandler
-}) {
+interface SmallInputBoxProps extends InputHTMLAttributes<HTMLInputElement> {}
+
+const SmallInputBox: React.FC<SmallInputBoxProps> = (props) => {
   return (
     <div className={styles["input-box"]}>
-      <input
-        type={type}
-        id={name}
-        name={name}
-        placeholder={placeholder}
-        required={required}
-        pattern={pattern}
-        autoComplete={autocomplete}
-        onKeyDown={onkeydown}
-      />
+      <input {...props} />
     </div>
-  )
-}
+  );
+};
+
+export default SmallInputBox

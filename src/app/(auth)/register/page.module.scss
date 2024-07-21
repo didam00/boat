@@ -1,44 +1,73 @@
 @import "@/styles/variables";
 
-/* Basic styles */
-.form {
+.form-container {
   display: flex;
   flex-direction: column;
-  width: fit-content; /* Adjust as needed */
-  margin: 4rem auto; /* Center the form horizontally */
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 500px;
-}
 
-.formGroup {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-}
+  margin-bottom: 240px;
 
-.formLabel {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
+  section {
+    display: flex;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    gap: 0.5rem 0.5rem;
 
-.formInput {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
+    // width: calc((240px + 2.5rem + 4px) * 2 + 0.5rem);
+    margin-bottom: 2rem;
+  }
 
-.submitButton {
-  padding: 10px 20px;
-  background-color: #4CAF50; /* Green */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  .form-title {
+    // font-size: 1.125rem;
+    text-align: center;
+    color: $BRIGHT_MAIN_COLOR;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group {
+    label {
+      color: $GRAY_COLOR;
+      font-weight: 600;
+    }
 
-.submitButton:hover {
-  background-color: #3e8e41; /* Darker green on hover */
+    div {
+      input {
+        // width: 240px;
+        width: 480px;
+        padding: 1rem 1.25rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        background-color: #ffffff;
+        // backdrop-filter: blur(1rem);
+        margin: 0;
+        // border-color: $GRAY_COLOR;
+
+        // &:hover {
+        //   border-color: $DARK_GRAY_COLOR;
+        // }
+        
+        // &:valid {
+        //   border-color: $MAIN_COLOR;
+        // }
+      }
+    }
+  }
+
+  button[type="submit"] {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $SUB_COLOR;
+    }
+  }
+
+  .error-message {
+    color: $MAIN_COLOR;
+    width: 524px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }

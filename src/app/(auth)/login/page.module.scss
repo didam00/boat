@@ -1,44 +1,22 @@
 @import "@/styles/variables";
 
-.top-container {
+.form-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100%;
-  
-  .main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+  > div, > div > input {
+    box-sizing: border-box;
+    width: 320px;
   }
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > div, > div > input {
-      box-sizing: border-box;
-      width: 320px;
-    }
-
-    input {
-      background-color: #ffffff40;
-      backdrop-filter: blur(10px);
-    }
-
-    button[type="submit"] {
-      width: calc(100% - 1rem);
-    }
+  input {
+    background-color: #ffffff40;
+    backdrop-filter: blur(10px);
   }
-}
 
-.typo_logo-container {
-  width: 120px;
-  margin: 50% 0 1rem 0;
-
-  img {
-    width: 100%;
+  button[type="submit"] {
+    width: calc(100% - 1rem);
   }
 }
 
@@ -72,23 +50,5 @@
 
   &:hover {
     text-decoration: underline;
-  }
-}
-
-.background-objects {
-  img {
-    position: absolute;
-    z-index: -1;
-
-    &:first-child {
-      rotate: 120deg;
-      top: -75%;
-      left: -25%; 
-    }
-
-    &:last-child {
-      right: -25%;
-      bottom: -75%;
-    }
   }
 }

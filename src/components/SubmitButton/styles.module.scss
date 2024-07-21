@@ -13,4 +13,8 @@
 
   border: none;
   border-radius: $BORDER_RADIUS / 2;
+
+  &:invalid {
+    background-color: #e0e0e0;
+  }
 }

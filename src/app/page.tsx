@@ -41,6 +41,7 @@ export default async function Main() {
   return (
     <main>
       <section className="m__size card-group-container">
+      <LineNotice text="쇼트 폼은 아직 지원하지 않습니다. 추후 업데이트를 기다려주세요!" />
         <div className="card-group-row">
           <Card
             title="회원님이 관심있을 설문" highlight={interestedSubject}

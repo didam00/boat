@@ -65,6 +65,13 @@ a {
   color: $SUB_COLOR;
 }
 
+input {
+  &:autofill, &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px $WHITE_MAIN_COLOR inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
 main {
   .m__size {
     max-width: $CONTAINER_WIDTH;
@@ -112,7 +119,7 @@ main {
   padding: 27px 31px;
   overflow: hidden;
 
-  &:hover {
+  &:not(.dont-scale-up):hover {
     scale: 1.02;
     box-shadow: 0px 4px 10px #00000008;
   }

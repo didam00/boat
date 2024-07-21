@@ -1,0 +1,47 @@
+@import "@/styles/variables";
+
+.top-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  
+  .main-content {
+    padding-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+// .typo_logo-container {
+//   width: 120px;
+//   margin-top: 1rem;
+//   margin-bottom: 1rem;
+
+//   img {
+//     width: 100%;
+//   }
+// }
+
+.background-objects {
+  img {
+    position: absolute;
+    z-index: -1;
+    width: 80deg;
+    opacity: 0.5;
+
+    &:first-child {
+      rotate: 200deg;
+      top: -25%;
+      left: -15%;
+      width: 50%;
+    }
+    
+    &:last-child {
+      right: -15%;
+      bottom: -75%;
+      width: 75%;
+    }
+  }
+}

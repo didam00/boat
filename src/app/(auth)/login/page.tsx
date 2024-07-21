@@ -11,18 +11,12 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <main>
-      <div className={`m__size ${styles["top-container"]}`} >
-        <BackgroundObjects />
-        <section className={styles["main-content"]}>
-          <Logo />
-          <LoginForm />
-          <ForgotPassword />
-          <div style={{height: "4px"}}></div>
-          <EnterRegisterPage />
-        </section>
-      </div>
-    </main>
+    <>
+      <LoginForm />
+      <ForgotPassword />
+      <div style={{height: "4px"}}></div>
+      <EnterRegisterPage />
+    </>
   )
 }
 
@@ -53,13 +47,14 @@ function LoginForm() {
       className={styles["form-container"]}
       onSubmit={submitAccount}
     >
+      <h2>로그인</h2>
       <SmallInputBox
         type="text"
         name="username"
         placeholder="아이디를 입력해주세요"
         required={true}
         pattern="^[a-z]+[a-z0-9_]{5,19}$"
-        autocomplete="on"
+        autoComplete="true"
       />
       <SmallInputBox
         type="password"
@@ -77,13 +72,6 @@ function LoginForm() {
   )
 }
 
-function Logo() {
-  return (
-    <div className={styles["typo_logo-container"]}>
-      <img src="images/boat_typo.png" alt="typo logo" />
-    </div>
-  )
-}
 
 function ForgotPassword() {
   const router = useRouter();
@@ -108,15 +96,6 @@ function EnterRegisterPage() {
       <Link href="/register">
         아직 계정이 없으신가요? 회원가입 하러가기
       </Link>
-    </div>
-  )
-}
-
-function BackgroundObjects() {
-  return (
-    <div className={styles["background-objects"]}>
-      <img src="/svgs/login-backobject.svg" />
-      <img src="/svgs/login-backobject.svg" />
     </div>
   )
 }
