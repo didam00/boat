@@ -4,7 +4,6 @@ import styles from "./page.module.scss";
 import SmallInputBox from "@/components/SmallInputBox";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { FormEvent, useState } from "react";
 
 export default function LoginPage() {
@@ -32,11 +31,17 @@ function LoginForm() {
 
     setLoading(true);
     try {
-      const res = await axios.post("/api/user/login", data);
+      await fetch("/api/user/login", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      
       router.back();
-      
-    } catch {
-      
+    } catch(err: any) {
+      console.log(err);
     } finally {
       setLoading(false);
     }

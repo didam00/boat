@@ -14,18 +14,16 @@ export default function connect() {
     const connection = mongoose.connection;
 
     connection.on("connected", () => {
-      
+      console.log("Connected to MongoDB");
     })
 
     connection.on("error", err => {
-      
       process.exit();
     })
 
     isConnected = true;
 
   } catch (error) {
-    
     process.exit();
   }
 }

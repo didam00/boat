@@ -1,7 +1,6 @@
-import Users, { UsersSchema } from "@/models/Users";
+import Users from "@/models/Users";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import { AddressType } from "@/models/Users";
 import connect from "@/lib/db";
 import jwt from "jsonwebtoken";
 
@@ -58,6 +57,8 @@ export async function POST(req: NextRequest) {
     return response;
 
   } catch (error: any) {
+    console.log(error.message);
+
     return NextResponse.json(
       {error: error.message},
       {status: 500}

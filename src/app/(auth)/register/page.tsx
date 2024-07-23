@@ -2,13 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
-import axios from "axios";
 import SmallInputBox from "@/components/SmallInputBox";
 import SubmitButton from "@/components/SubmitButton";
 import { useState } from "react";
 
 const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z$`~!@$!%*#^?&-_=]{8,32}$/;
-const ID_PATTERN = /^[a-z]+[a-z0-9_]{6,20}$/;
+const ID_PATTERN = /^[a-z]+[a-z0-9_]{5,19}$/;
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -59,7 +58,13 @@ export default function RegisterPage() {
     if (err.length > 0) return;
 
     try {
-      const res = await axios.post("/api/user/register", data);
+      await fetch("/api/user/register", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
       router.back();
     } catch {
       
@@ -128,8 +133,8 @@ export default function RegisterPage() {
       </section>
       <SubmitButton text="가입" />
       <div className={styles["error-message"]}> {
-        errorMessage.map(e =>
-          <span>
+        errorMessage.map((e, i) =>
+          <span key={i}>
             {e}
           </span>)
       } </div>

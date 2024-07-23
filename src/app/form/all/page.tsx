@@ -4,7 +4,6 @@ import { GetServerSideProps } from "next";
 import styles from "./page.module.scss";
 import Filter from "@/components/Filter";
 import FormRow from "@/components/FormRow";
-import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import getSimular from "@/helper/getSimular";
@@ -24,8 +23,8 @@ export default function AllFormsList() {
 
   useEffect(() => {
     const fetchForms = async () => {
-      const res = await axios.get("/api/form/forms");
-      setForms(res.data.data);
+      const res = await (await fetch("/api/form/forms")).json();
+      setForms(res.data);
     };
 
     fetchForms();

@@ -6,7 +6,6 @@ import SkeletonIndex from "@/components/SkeletonIndex/index.client";
 import QuestionBox from "@/components/QuestionBox";
 import FormPageSideBox from "@/components/FormPageSideBox";
 import { v4 as uuidv4 } from "uuid";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { title } from "process";
 
@@ -36,11 +35,17 @@ export default function CreateFormPage() {
       votes: 0,
       views: 0,
       title: formTitle,
-      author: ((await axios.get("/api/user/me")).data.data._id),
+      author: (await (await fetch("/api/user/me")).json()).data._id,
       questions: newQuestions,
     }
 
-    const res = await axios.post("/api/form/upload", newForm);
+    await fetch("/api/form/upload", {
+      method: "POST",
+      body: JSON.stringify(newForm),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
     router.push("/");
 
     if (formTitle === "" && questions.length === 0) {

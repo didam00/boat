@@ -4,7 +4,6 @@ import QuestionBox from "@/components/QuestionBox";
 import styles from "./page.module.scss";
 import FormPageSideBox from "@/components/FormPageSideBox";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import { redirect, useRouter } from "next/navigation";
 import { NextPageContext } from "next";
 import { parseCookie } from "next/dist/compiled/@edge-runtime/cookies";
@@ -34,7 +33,7 @@ export default function VotePage({
     if ((voteFormData?.isAllowAll ?? false) && !isUser) {
       userId = null;
     } else {
-      userId = (await axios.get("/api/user/me")).data.data._id;
+      userId = (await (await fetch("/api/user/me")).json()).data._id;
     }
     const responds: {
       questionId: string,
@@ -50,19 +49,25 @@ export default function VotePage({
       })
     }
 
-    const res = await axios.post("/api/form/respond", {
-      formId: voteFormData?._id ?? "",
-      responds: responds,
-      userId: userId
-    })
+    await fetch("/api/form/respond", {
+      method: "POST",
+      body: JSON.stringify({
+        formId: voteFormData?._id ?? "",
+        responds: responds,
+        userId: userId
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
 
     router.push("/form/all");
   }
 
   useEffect(() => {
     const getVoteFormData = async () => {
-      const res = await axios.get(`/api/form/forms/${params.formId}`);
-      setVoteFormData(res.data.data);
+      const res = await (await fetch(`/api/form/forms/${params.formId}`)).json();
+      setVoteFormData(res.data);
     }
 
     getVoteFormData();
@@ -72,7 +77,7 @@ export default function VotePage({
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const res = await axios.get("/api/user/me");
+        await (await fetch("/api/user/me")).json();
       } catch (error: any) {
         setIsUser(false);
         if (voteFormData && !voteFormData.isAllowAll) {

@@ -1,6 +1,5 @@
 "use client"
 
-import axios from "axios";
 import styles from "./page.module.scss";
 import { useEffect, useState } from "react";
 import { QuestionSchema } from "@/models/Questions";
@@ -17,8 +16,8 @@ export default function ResultPage({
 
   useEffect(() => {
     const getVoteFormData = async () => {
-      const res = await axios.get(`/api/form/forms/${params.formId}`);
-      setVoteFormData(res.data.data);
+      const res = await (await fetch(`/api/form/forms/${params.formId}`)).json();
+      setVoteFormData(res.data);
     }
 
     getVoteFormData();

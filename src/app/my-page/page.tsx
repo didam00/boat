@@ -1,7 +1,6 @@
 "use client"
 
 import { UsersSchema } from "@/models/Users";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./page.module.scss";
 import { useRouter } from "next/navigation";
@@ -14,8 +13,8 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get("/api/user/me");
-      setUser(res.data.data);
+      const res = await (await fetch("/api/user/me")).json();
+      setUser(res.data);
     }
   
     getUser();
