@@ -21,7 +21,7 @@ export default function ResultPage({
     }
 
     getVoteFormData();
-  })
+  }, []);
 
   if (!voteFormData) return <></>;
 
