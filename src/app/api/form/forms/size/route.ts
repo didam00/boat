@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const res = await Forms.countDocuments();
+    const res = await Forms.countDocuments({isPublic: true});
 
     return NextResponse.json({
       message: "Forms Found",

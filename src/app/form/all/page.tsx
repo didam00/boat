@@ -9,7 +9,7 @@ import { use, useEffect, useState } from "react";
 import getSimular from "@/helper/getSimular";
 import Pagination from "@/components/Pagination";
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 15;
 
 interface FormListData {
   _id: string;
@@ -32,8 +32,8 @@ export default function AllFormsList() {
   useEffect(() => {
     const fetchPageCount = async () => {
       const res = await fetch("/api/form/forms/size");
-      const { data } = await res.json();
-      setPageCount(Math.ceil(data / PAGE_SIZE));
+      const size = (await res.json()).data;
+      setPageCount(Math.ceil(size / PAGE_SIZE));
     };
 
     fetchPageCount();
