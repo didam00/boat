@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
 
     if (!user) {
       return NextResponse.json({
-        error: "Users does not exist"
+        error: "'username' data does not exist in database"
       }, {
         status: 400
       });

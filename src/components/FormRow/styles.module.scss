@@ -45,3 +45,25 @@
     }
   }
 }
+
+.row.skeleton {
+  span {
+    display: inline-block;
+    background-color: $LINE_GRAY_COLOR;
+    height: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .title-value span {
+    width: 75%;
+  }
+  
+  .category-value span {
+    width: 50%;
+  }
+
+  .votes-value span {
+    width: 75%;
+    background-color: $WHITE_MAIN_COLOR;
+  }
+}

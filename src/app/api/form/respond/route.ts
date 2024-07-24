@@ -3,7 +3,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import connect from "@/lib/db";
 import Questions from "@/models/Questions";
-import { Types } from "mongoose";
 import Forms from "@/models/Forms";
 
 connect();

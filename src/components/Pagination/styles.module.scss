@@ -1,0 +1,43 @@
+@import "@/styles/variables";
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+
+  width: 100%;
+  padding: 0;
+
+  list-style: none;
+
+  li {
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      width: 2rem;
+      height: 2rem;
+  
+      border-radius: 100%;
+      
+      font-size: 1rem;
+      font-weight: 500;
+      
+      color: $MAIN_COLOR;
+
+      &:hover {
+        background-color: $WHITE_MAIN_COLOR;
+      }
+
+      &.active {
+        background-color: $MAIN_COLOR;
+        color: white;
+  
+        &:hover {
+          background-color: $MAIN_COLOR;
+        }
+      }
+    }
+  }
+}

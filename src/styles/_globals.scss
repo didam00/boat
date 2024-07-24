@@ -80,7 +80,8 @@ main {
   }
 
   .left-container {
-    width: calc(100% - $RIGHT_SIDE_WIDTH - $DIVIDE_GAP);
+    // width: calc(100% - $RIGHT_SIDE_WIDTH - $DIVIDE_GAP);
+    width: $LEFT_SIDE_WIDTH;
   }
 
   > *:first-child {

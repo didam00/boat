@@ -12,12 +12,16 @@ export default function ProfilePage() {
   const router = useRouter();
 
   useEffect(() => {
-    const getUser = async () => {
-      const res = await (await fetch("/api/user/me")).json();
-      setUser(res.data);
+    const fetchUser = async () => {
+      const getUser = async () => {
+        const res = await fetch("/api/user/me");
+        return res.json();
+      }
+      const { data } = await getUser();
+      setUser(data);
     }
   
-    getUser();
+    fetchUser();
   }, [])
 
   if (!user) {

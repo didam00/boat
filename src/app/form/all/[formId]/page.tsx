@@ -66,6 +66,7 @@ export default function VotePage({
 
   useEffect(() => {
     const getVoteFormData = async () => {
+      
       const res = await (await fetch(`/api/form/forms/${params.formId}`)).json();
       setVoteFormData(res.data);
     }

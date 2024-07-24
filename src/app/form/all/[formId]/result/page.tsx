@@ -15,12 +15,16 @@ export default function ResultPage({
   const [voteFormData, setVoteFormData] = useState<VoteFormSchema>();
 
   useEffect(() => {
-    const getVoteFormData = async () => {
-      const res = await (await fetch(`/api/form/forms/${params.formId}`)).json();
-      setVoteFormData(res.data);
+    const fetchVoteFormData = async () => {
+      const getVoteFormData = async () => {
+        const res = await fetch(`/api/form/forms/${params.formId}`);
+        return await res.json();
+      }
+      const { data } = await getVoteFormData();
+      setVoteFormData(data);
     }
 
-    getVoteFormData();
+    fetchVoteFormData();
   }, []);
 
   if (!voteFormData) return <></>;
