@@ -54,14 +54,17 @@ export default function VotePage({
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (!voteFormData) {
+      console.error("voteFormData is not loaded yet");
+      return;
+    }
 
-    console.log(voteFormData?.isAllowAll);
+    console.log(voteFormData.isAllowAll);
 
     const form = formRef.current as HTMLFormElement;
-    const formData = new FormData(form);
     let userId;
 
-    if ((voteFormData?.isAllowAll ?? false) && !isUser) {
+    if ((voteFormData.isAllowAll ?? false) && !isUser) {
       userId = null;
     } else {
       userId = (await (await fetch("/api/user/me")).json()).data._id;
@@ -73,22 +76,56 @@ export default function VotePage({
       content: string,
     }[] = []
     
-    // for (let e of formData.entries()) {
-    //   console.log(e);
+    const questionBoxList = form.querySelectorAll(".question-box");
+    for (let i = 0; i < voteFormData.questions.length; i++) {
+      switch (voteFormData.questions[i].type) {
+        case "choice":
+        case "multi-choice":
+          const checkeds = questionBoxList[i].querySelectorAll("input:checked") as NodeListOf<HTMLInputElement>;
+          checkeds.forEach(checked => {
+            responds.push({
+              questionId: voteFormData.questions[i]._id!,
+              type: "txt",
+              content: checked.value
+            });
+          })
+          break;
 
-    //   responds.push({
-    //     type: "txt",
-    //     questionId: e[0],
-    //     content: String(e[1])
-    //   })
-    // }
+        case "short":
+          responds.push({
+            questionId: voteFormData.questions[i]._id!,
+            type: "txt",
+            content: (questionBoxList[i].querySelector("input") as HTMLInputElement).value
+          });
+          break;
+
+        case "multi-short":
+          questionBoxList[i].querySelectorAll(".answer span").forEach(answer => {
+            responds.push({
+              questionId: voteFormData.questions[i]._id!,
+              type: "txt",
+              content: (answer as HTMLSpanElement).innerText
+            });
+          });
+          break;
+
+        case "essay":
+          responds.push({
+            questionId: voteFormData.questions[i]._id!,
+            type: "txt",
+            content: (questionBoxList[i].querySelector("textarea") as HTMLTextAreaElement).value
+          });
+      }
+    }
+
+    console.log(responds)
 
     await fetch("/api/form/respond", {
       method: "POST",
       body: JSON.stringify({
         formId: voteFormData?._id ?? "",
         responds: responds,
-        userId: userId
+        userId: userId,
       }),
       headers: {
         "Content-Type": "application/json"

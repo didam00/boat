@@ -5,7 +5,7 @@ import EssayAnswerBox from "@/components/AnswerBox/EssayAnswerBox";
 import ChoiceAnswerBox from "@/components/AnswerBox/ChoiceAnswerBox";
 import MultiChoiceAnswerBox from "@/components/AnswerBox/MultiChoiceAnswerBox";
 import ShortAnswerBox from "@/components/AnswerBox/ShortAnswerBox";
-import MultiShortAnswerBox from "@/components/AnswerBox/MultiShortAnswerBox/index.client";
+import MultiShortAnswerBox from "@/components/AnswerBox/MultiShortAnswerBox";
 import React, { useState } from "react";
 import SmallInputBox from "../SmallInputBox";
 
@@ -196,7 +196,7 @@ export default function QuestionBox({
   return (
     <section
       id={`question-${index+1}`}
-      className={`${styles["question-box"]} ${editable ? styles["editable"] : ""} box-container`}
+      className={`question-box ${styles["question-box"]} ${editable ? styles["editable"] : ""} box-container`}
       key={index}
     >
       <div className={styles["prefix-box"]}>

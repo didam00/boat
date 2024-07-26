@@ -9,7 +9,9 @@ export interface RespondSchema {
 const respondSchema = new Schema({
   userId: {type: Schema.Types.ObjectId, ref: 'users', required: false},
   type: String,
-  content: String
+  content: String,
+}, {
+  timestamps: true
 })
 
 export interface QuestionSchema {

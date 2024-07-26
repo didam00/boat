@@ -57,7 +57,7 @@ function Answer({
   onClick: () => void
 }) {
   return (
-    <div className={styles["answer"]} onClick={onClick}>
+    <div className={`answer ${styles["answer"]}`} onClick={onClick}>
       <span className={styles["text"]}>{answer}</span>
       <img className={styles["close-icon"]} src="/svgs/close-icon.svg" alt="close icon" />
     </div>
