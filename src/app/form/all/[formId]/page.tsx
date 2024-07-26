@@ -76,15 +76,25 @@ export default function VotePage({
       content: string,
     }[] = []
     
-    const questionBoxList = form.querySelectorAll(".question-box");
+    const questionBoxList = form.querySelectorAll(".question-box") as NodeListOf<HTMLDivElement>;
     for (let i = 0; i < voteFormData.questions.length; i++) {
-      switch (voteFormData.questions[i].type) {
+      const questionData = voteFormData.questions[i];
+      const questionBox = questionBoxList[i];
+      switch (questionData.type) {
         case "choice":
         case "multi-choice":
-          const checkeds = questionBoxList[i].querySelectorAll("input:checked") as NodeListOf<HTMLInputElement>;
+          const checkeds = questionBox.querySelectorAll("input:checked") as NodeListOf<HTMLInputElement>;
+          if (
+            (questionData.minChoices && checkeds.length < questionData.minChoices)
+            || (questionData.maxChoices && checkeds.length > questionData.maxChoices)
+            || (checkeds.length === 0 && questionData.required)
+          ) {
+            errorShivering(questionBox);
+            return;
+          }
           checkeds.forEach(checked => {
             responds.push({
-              questionId: voteFormData.questions[i]._id!,
+              questionId: questionData._id!,
               type: "txt",
               content: checked.value
             });
@@ -92,33 +102,50 @@ export default function VotePage({
           break;
 
         case "short":
+          if (questionData.required
+              && (questionBox.querySelector("input") as HTMLInputElement).value.trim() === ""
+            ) {
+            errorShivering(questionBox);
+            return;
+          }
           responds.push({
-            questionId: voteFormData.questions[i]._id!,
+            questionId: questionData._id!,
             type: "txt",
-            content: (questionBoxList[i].querySelector("input") as HTMLInputElement).value
+            content: (questionBox.querySelector("input") as HTMLInputElement).value
           });
           break;
 
         case "multi-short":
-          questionBoxList[i].querySelectorAll(".answer span").forEach(answer => {
+          const answers = questionBox.querySelectorAll(".answer span") as NodeListOf<HTMLSpanElement>;
+          if (questionData.required
+            && answers.length === 0
+          ) {
+            errorShivering(questionBox);
+            return;
+          }
+          answers.forEach(answer => {
             responds.push({
-              questionId: voteFormData.questions[i]._id!,
+              questionId: questionData._id!,
               type: "txt",
-              content: (answer as HTMLSpanElement).innerText
+              content: answer.innerText
             });
           });
           break;
 
         case "essay":
+          if (questionData.required
+            && (questionBox.querySelector("textarea") as HTMLTextAreaElement).value.trim() === ""
+          ) {
+            errorShivering(questionBox);
+            return;
+          }
           responds.push({
-            questionId: voteFormData.questions[i]._id!,
+            questionId: questionData._id!,
             type: "txt",
-            content: (questionBoxList[i].querySelector("textarea") as HTMLTextAreaElement).value
+            content: (questionBox.querySelector("textarea") as HTMLTextAreaElement).value
           });
       }
     }
-
-    console.log(responds)
 
     await fetch("/api/form/respond", {
       method: "POST",
@@ -161,4 +188,15 @@ export default function VotePage({
       </div>
     </main>
   )
+}
+
+const errorShivering = (questionBox: HTMLDivElement) => {
+  window.scrollTo({
+    top: questionBox.offsetTop - 100,
+    behavior: "smooth"
+  })
+  questionBox.classList.add(styles["error-animation"]);
+  setTimeout(() => {
+    questionBox.classList.remove(styles["error-animation"]);
+  }, 500);
 }

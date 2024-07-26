@@ -48,8 +48,11 @@ export default function CreateFormPage() {
     });
     router.push("/");
 
-    if (formTitle === "" && questions.length === 0) {
-      alert("제목도 없고 내용도 없는 폼을 왜 올리시나요");
+    if (formTitle === "") {
+      alert("제목도 없는 폼을 왜 올리시나요");
+      return;
+    } else if (questions.length === 0) {
+      alert("내용도 없는 폼을 왜 올리시나요");
       return;
     }
   }

@@ -1,5 +1,21 @@
 @import "@/styles/variables";
 
+@keyframes shake {
+  22%,
+  66% {
+    color: $MAIN_COLOR;
+    // border: 2px solid $MAIN_COLOR;
+    translate: -4px 0;
+  }
+  
+  44%,
+  88% {
+    color: $MAIN_COLOR;
+    // border: 2px solid $MAIN_COLOR;
+    translate: 4px 0;
+  }
+}
+
 .top-container {
   .category-list {
     margin-left: 0.5rem;
@@ -12,4 +28,8 @@
   .vote-main {
     width: $LEFT_SIDE_WIDTH + 200px;
   }
+}
+
+.error-animation {
+  animation: shake 500ms 2;
 }
