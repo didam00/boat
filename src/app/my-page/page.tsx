@@ -17,8 +17,9 @@ export default function ProfilePage() {
         const res = await fetch("/api/user/me");
         return res.json();
       }
-      const { data } = await getUser();
-      setUser(data);
+      const res = await getUser();
+      console.log(res);
+      setUser(res.data);
     }
   
     fetchUser();
@@ -31,7 +32,7 @@ export default function ProfilePage() {
   return (
     <main>
       <div className="m__size">
-        <div className={`box-container ${styles["profile-box"]}`}>
+        <div className={`box-container dont-scale-up hover-border ${styles["profile-box"]}`}>
           <h2>{user.nickname}</h2>
           <RowComponent property="이메일" value={user.email} />
           <RowComponent property="유저 아이디" value={user.username} />

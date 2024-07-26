@@ -14,7 +14,7 @@ export default function ShortAnswerBox({
       name={`${question._id}`}
       placeholder="한 개의 단어를 입력해주세요."
       required
-      onkeydown={(event: React.KeyboardEvent<HTMLInputElement>) => {
+      onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
           event.preventDefault();
         }

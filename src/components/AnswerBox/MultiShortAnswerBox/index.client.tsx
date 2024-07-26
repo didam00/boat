@@ -38,7 +38,7 @@ export default function MultiShortAnswerBox({
         name={`${question._id}`}
         placeholder="'Enter' 키로 단어를 추가하세요!"
         required
-        onkeydown={handleKeyDown}
+        onKeyDown={handleKeyDown}
       />
       <div className={styles["answers-box"]}>
         {answers.map((answer, i) => (

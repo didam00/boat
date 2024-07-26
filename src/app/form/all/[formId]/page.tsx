@@ -18,8 +18,39 @@ export default function VotePage({
   const [voteFormData, setVoteFormData] = useState<VoteFormType>();
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter()
-  const [tokenCheck, setTokenCheck] = useState(false);
+  // const [tokenCheck, setTokenCheck] = useState(false);
   const [isUser, setIsUser] = useState(true);
+
+  // useEffect(() => {
+  //   const checkToken = async () => {
+  //     try {
+  //       await (await fetch("/api/user/me")).json();
+  //     } catch (error: any) {
+  //       setIsUser(false);
+  //       if (voteFormData && !voteFormData.isAllowAll) {
+  //         router.push("/login");
+  //         alert("회원만 접근할 수 있습니다.");
+  //       }
+  //     }
+  //   }
+
+  //   if (voteFormData && !tokenCheck) {
+  //     checkToken();
+  //     setTokenCheck(true);
+  //     console.log(voteFormData?.isAllowAll);
+  //   }
+  // }, [voteFormData])
+
+  useEffect(() => {
+    const getVoteFormData = async () => {
+      
+      const res = await (await fetch(`/api/form/forms/${params.formId}`)).json();
+      setVoteFormData(res.data);
+    }
+
+    getVoteFormData();
+    
+  }, [params.formId])
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -35,19 +66,22 @@ export default function VotePage({
     } else {
       userId = (await (await fetch("/api/user/me")).json()).data._id;
     }
+
     const responds: {
       questionId: string,
       type: string,
       content: string,
     }[] = []
     
-    for (let e of formData.entries()) {
-      responds.push({
-        type: "txt",
-        questionId: e[0],
-        content: String(e[1])
-      })
-    }
+    // for (let e of formData.entries()) {
+    //   console.log(e);
+
+    //   responds.push({
+    //     type: "txt",
+    //     questionId: e[0],
+    //     content: String(e[1])
+    //   })
+    // }
 
     await fetch("/api/form/respond", {
       method: "POST",
@@ -63,37 +97,6 @@ export default function VotePage({
 
     router.push("/form/all");
   }
-
-  useEffect(() => {
-    const getVoteFormData = async () => {
-      
-      const res = await (await fetch(`/api/form/forms/${params.formId}`)).json();
-      setVoteFormData(res.data);
-    }
-
-    getVoteFormData();
-    
-  }, [params.formId])
-
-  useEffect(() => {
-    const checkToken = async () => {
-      try {
-        await (await fetch("/api/user/me")).json();
-      } catch (error: any) {
-        setIsUser(false);
-        if (voteFormData && !voteFormData.isAllowAll) {
-          router.push("/login");
-          alert("회원만 접근할 수 있습니다.");
-        }
-      }
-    }
-
-    if (voteFormData && !tokenCheck) {
-      checkToken();
-      setTokenCheck(true);
-      console.log(voteFormData?.isAllowAll);
-    }
-  }, [voteFormData])
 
   if (!voteFormData) {
     return <></>
